@@ -39,5 +39,12 @@ func main() {
 	}
 
 	log.Println(output)
-	log.Println(output.Clusters)
+	log.Println(output.Clusters[0])
+
+	clusterName := "test"
+	result, err := client.DescribeCluster(context.TODO(), &eks.DescribeClusterInput{Name: &clusterName})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(*result.Cluster.Logging.ClusterLogging[0].Enabled)
 }
