@@ -1,16 +1,16 @@
 # Design
 
 ## EKS
-* Logging
-* Envelope Encryption
-* Private Endpoint
+* Logging - Audit logs.
+* Envelope Encryption.
+* Private Endpoint.
 * Public Endpoint Firewall if exists.
-* Cluster SG
-* Additional SGs
+* Cluster SG.
+* Additional SGs.
 * HTTPS - Built In.
 
 ## EC2
 * Instance Metadata
-* Session Manager
 * Encrypted Volumes
+* All security groups?
 * Private Subnets
