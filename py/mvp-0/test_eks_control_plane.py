@@ -5,9 +5,9 @@ import unittest
 import os
 import boto3
 
-cluster_name = os.getenv('SEK_EKS_CLUSTER_NAME')
+cluster_name = os.getenv("SEK_EKS_CLUSTER_NAME")
  
-eks_client = boto3.client('eks')
+eks_client = boto3.client("eks")
 cluster_description = eks_client.describe_cluster(name=cluster_name)
 
 cluster_security_group_id = cluster_description["cluster"]["resourcesVpcConfig"]["clusterSecurityGroupId"]
@@ -16,17 +16,19 @@ security_group_ids = []
 security_group_ids.append(cluster_security_group_id)
 for id in additional_security_group_ids:
     security_group_ids.append(id)
-ec2_client = boto3.client('ec2')
+ec2_client = boto3.client("ec2")
 security_groups = ec2_client.describe_security_groups(GroupIds=security_group_ids)
 
-class EKSControlPlane(unittest.TestCase):
+class TestEKSControlPlane(unittest.TestCase):
 
     def test_endpoint_access(self):
+        print("EKS - Control Plane - Endpoint Access")
         global cluster_description
         assert cluster_description["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is False
         assert cluster_description["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"] is True
         
     def test_control_plane_logging(self):
+        print("EKS - Control Plane - Logging")
         global cluster_description
         log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
         all_log_types_found = False
@@ -35,6 +37,7 @@ class EKSControlPlane(unittest.TestCase):
         assert all_log_types_found is True
 
     def test_envelope_encryption_for_secrets(self):
+        print("EKS - Control Plane - Secret Encryption")
         global cluster_description
         envelope_encryption_config_found = False
         for item in cluster_description["cluster"]["encryptionConfig"][0]["resources"]:
@@ -43,6 +46,7 @@ class EKSControlPlane(unittest.TestCase):
         assert envelope_encryption_config_found is True
 
     def test_endpoint_https(self):
+        print("EKS - Control Plane - Endpoint HTTPS")
         global cluster_description
         https_found = False
         if "https" in cluster_description["cluster"]["endpoint"]:
@@ -50,6 +54,7 @@ class EKSControlPlane(unittest.TestCase):
         assert https_found is True
     
     def test_unrestricted_public_endpoint_access_if_enabled(self):
+        print("EKS - Control Plane - Public Endpoint Restriction")
         global cluster_description
         if cluster_description["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
             for ipv4_range in cluster_description["cluster"]["resourcesVpcConfig"]["publicAccessCidrs"]:
@@ -57,6 +62,7 @@ class EKSControlPlane(unittest.TestCase):
                     assert False
 
     def test_unrestricted_security_groups_ingress(self):
+        print("EKS - Control Plane - Security Groups")
         # If Protocol, Ports and Range conjunction is *
         global security_groups
         for sg in security_groups["SecurityGroups"]:
@@ -77,5 +83,5 @@ class EKSControlPlane(unittest.TestCase):
                 if any_protocol and any_port and any_range:
                     assert False
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
