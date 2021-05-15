@@ -19,6 +19,14 @@ MVP Check Set.
 * Encrypted Volumes.
 * Node Security Groups.
 * Private Subnets.
+* No Public IP Attached.
+
+## Other Areas Not In Scope
+* KMS Keys used for any EKS-related encryption are rotated.
+* General IAM best practises.
+* In-Cluster Kubernetes Security Best Practises.
+* Network Audit - VPC Flow Logs.
+* Managed Service Actions Audit - CloudTrail.
 
 # Configuration
 * CLI Inputs.
