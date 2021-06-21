@@ -1,5 +1,6 @@
 """
-AWS - EKS - Control Plane - Runtime Security and Misconfiguration Scanning
+SEK - Runtime Cloud Security and Misconfiguration Scanning.
+AWS - EKS - Managed Service.
 """
 import unittest
 import os
@@ -19,16 +20,17 @@ for id in additional_security_group_ids:
 ec2_client = boto3.client("ec2")
 security_groups = ec2_client.describe_security_groups(GroupIds=security_group_ids)
 
-class TestEKSControlPlane(unittest.TestCase):
+
+class TestAWSEKSManagedService(unittest.TestCase):
 
     def test_endpoint_access(self):
-        print("EKS - Control Plane - Endpoint Access")
+        print("AWS - EKS - Managed Service - Endpoint Access")
         global cluster_description
         assert cluster_description["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is False
         assert cluster_description["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"] is True
         
     def test_control_plane_logging(self):
-        print("EKS - Control Plane - Logging")
+        print("AWS - EKS - Managed Service - Logging")
         global cluster_description
         log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
         all_log_types_found = False
@@ -37,24 +39,16 @@ class TestEKSControlPlane(unittest.TestCase):
         assert all_log_types_found is True
 
     def test_envelope_encryption_for_secrets(self):
-        print("EKS - Control Plane - Secret Encryption")
+        print("AWS - EKS - Managed Service - Secret Encryption")
         global cluster_description
         envelope_encryption_config_found = False
         for item in cluster_description["cluster"]["encryptionConfig"][0]["resources"]:
             if item == "secrets":
                 envelope_encryption_config_found = True
         assert envelope_encryption_config_found is True
-
-    def test_endpoint_https(self):
-        print("EKS - Control Plane - Endpoint HTTPS")
-        global cluster_description
-        https_found = False
-        if "https" in cluster_description["cluster"]["endpoint"]:
-            https_found = True
-        assert https_found is True
     
     def test_unrestricted_public_endpoint_access_if_enabled(self):
-        print("EKS - Control Plane - Public Endpoint Restriction")
+        print("AWS - EKS - Managed Service - Public Endpoint Restriction")
         global cluster_description
         if cluster_description["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
             for ipv4_range in cluster_description["cluster"]["resourcesVpcConfig"]["publicAccessCidrs"]:
@@ -62,7 +56,7 @@ class TestEKSControlPlane(unittest.TestCase):
                     assert False
 
     def test_unrestricted_security_groups_ingress(self):
-        print("EKS - Control Plane - Security Groups")
+        print("AWS - EKS - Managed Service - Security Groups")
         # If Protocol, Ports and Range conjunction is *
         global security_groups
         for sg in security_groups["SecurityGroups"]:
@@ -82,6 +76,7 @@ class TestEKSControlPlane(unittest.TestCase):
                         any_range = True
                 if any_protocol and any_port and any_range:
                     assert False
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -5,13 +5,13 @@ MVP Check Set.
 
 ## EKS
 
-### Control Plane
+### Managed Service
 * Logging - Audit logs.
 * Secrets - Envelope Encryption.
 * Private Endpoint enabled. Public Endpoint disabled.
 * Public Endpoint Firewall if exists.
-* Cluster SG - no unrestricted access.
-* Additional SGs - no unrestricted access.
+* Cluster SG - No unrestricted access.
+* Additional SGs - No unrestricted access.
 * HTTPS - Built In.
 
 ### Nodes

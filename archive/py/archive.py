@@ -11,3 +11,11 @@ if found_associations == len(subnet_ids):
 else:
     # Find Main Route Table for VPC and Examine
     # ...
+
+    def test_endpoint_https(self):
+        print("EKS - Managed Service - Endpoint HTTPS")
+        global cluster_description
+        https_found = False
+        if "https" in cluster_description["cluster"]["endpoint"]:
+            https_found = True
+        assert https_found is True

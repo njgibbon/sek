@@ -1,4 +1,5 @@
 # Sek
+Runtime Cloud Security and Misconfiguration Scanning.
 
 # scripts
 * Clone this project and move to the top-level directory.

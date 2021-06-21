@@ -1,5 +1,6 @@
 """
-AWS - EKS - Nodes - Runtime Security and Misconfiguration Scanning
+SEK - Runtime Cloud Security and Misconfiguration Scanning.
+AWS - EKS - Nodes.
 """
 import unittest
 import os
@@ -15,10 +16,11 @@ eks_node_filter = [{
 ec2_client = boto3.client("ec2")
 eks_nodes = ec2_client.describe_instances(Filters=eks_node_filter)
 
-class TestEKSNodes(unittest.TestCase):
+
+class TestAWSEKSNodes(unittest.TestCase):
 
     def test_imds(self):
-        print("EKS - Nodes - IMDS")
+        print("AWS - EKS - Nodes - IMDS")
         global eks_nodes
         for node in eks_nodes["Reservations"]:
             metadata_options = node["Instances"][0]["MetadataOptions"]
@@ -29,7 +31,7 @@ class TestEKSNodes(unittest.TestCase):
                     assert False
 
     def test_unrestricted_security_groups_ingress(self):
-        print("EKS - Nodes - Security Groups")
+        print("AWS - EKS - Nodes - Security Groups")
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
         global eks_nodes
         global ec2_client
@@ -58,9 +60,8 @@ class TestEKSNodes(unittest.TestCase):
                     if any_protocol and any_port and any_range:
                         assert False
 
-
     def test_volume_encryption(self):
-        print("EKS - Nodes - Volume Encryption")
+        print("AWS - EKS - Nodes - Volume Encryption")
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
         global eks_nodes
         ec2_resource = boto3.resource("ec2")
@@ -70,9 +71,8 @@ class TestEKSNodes(unittest.TestCase):
                 volume = ec2_resource.Volume(device["Ebs"]["VolumeId"])
                 assert volume.encrypted is True
             
-
     def test_private_subnets(self):
-        print("EKS - Nodes - Private Subnets")
+        print("AWS - EKS - Nodes - Private Subnets")
         global eks_nodes
         global ec2_client 
         subnet_ids = []
@@ -94,6 +94,7 @@ class TestEKSNodes(unittest.TestCase):
                     if "DestinationCidrBlock" in r and "GatewayId" in r:
                         if r["DestinationCidrBlock"] == "0.0.0.0/0" and "igw-" in r["GatewayId"]:
                             assert False
+
 
 if __name__ == "__main__":
     unittest.main()
