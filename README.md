@@ -1,10 +1,9 @@
 # Sek
 
-# MVP 0
+# scripts
 * Clone this project and move to the top-level directory.
-* Move to the MVP directory.
 ```
-cd py/mvp-0
+cd scripts
 ```
 * Configure AWS Permissions: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
 * Configure the tool.
