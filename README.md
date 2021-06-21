@@ -16,8 +16,8 @@ export SEK_EKS_CLUSTER_NAME=<eks-cluster-name>
 # All Checks
 python3 -m unittest
 
-# Control Plane Checks
-python3 test_eks_control_plane.py
+# Managed Service Checks
+python3 test_eks_managed_service.py
 
 # Node Checks
 python3 test_eks_nodes.py
