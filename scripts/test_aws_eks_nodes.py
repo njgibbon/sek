@@ -10,7 +10,7 @@ import warnings
 cluster_name = os.getenv("SEK_AWS_EKS_CLUSTER_NAME")
 
 eks_node_filter = [{
-    "Name":"tag:kubernetes.io/cluster/"+cluster_name,
+    "Name": "tag:kubernetes.io/cluster/" + cluster_name,
     "Values": ["owned"]
 }]
 ec2_client = boto3.client("ec2")
@@ -70,11 +70,11 @@ class TestAWSEKSNodes(unittest.TestCase):
             for device in devices:
                 volume = ec2_resource.Volume(device["Ebs"]["VolumeId"])
                 assert volume.encrypted is True
-            
+
     def test_private_subnets(self):
         print("AWS - EKS - Nodes - Private Subnets")
         global eks_nodes
-        global ec2_client 
+        global ec2_client
         subnet_ids = []
         # Obtain Node Subnet IDs
         for node in eks_nodes["Reservations"]:
@@ -84,7 +84,7 @@ class TestAWSEKSNodes(unittest.TestCase):
         # Obtain Route Tables associated to Subnets
         if subnet_ids != []:
             route_table_filter = [{
-                "Name":"association.subnet-id",
+                "Name": "association.subnet-id",
                 "Values": subnet_ids
             }]
             route_tables = ec2_client.describe_route_tables(Filters=route_table_filter)

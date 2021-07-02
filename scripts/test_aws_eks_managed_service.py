@@ -7,7 +7,7 @@ import os
 import boto3
 
 cluster_name = os.getenv("SEK_AWS_EKS_CLUSTER_NAME")
- 
+
 eks_client = boto3.client("eks")
 cluster_description = eks_client.describe_cluster(name=cluster_name)
 
@@ -28,13 +28,13 @@ class TestAWSEKSManagedService(unittest.TestCase):
         global cluster_description
         assert cluster_description["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is False
         assert cluster_description["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"] is True
-        
+
     def test_control_plane_logging(self):
         print("AWS - EKS - Managed Service - Logging")
         global cluster_description
         log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
         all_log_types_found = False
-        if all (item in cluster_description["cluster"]["logging"]["clusterLogging"][0]["types"] for item in log_types):
+        if all(item in cluster_description["cluster"]["logging"]["clusterLogging"][0]["types"] for item in log_types):
             all_log_types_found = True
         assert all_log_types_found is True
 
@@ -46,7 +46,7 @@ class TestAWSEKSManagedService(unittest.TestCase):
             if item == "secrets":
                 envelope_encryption_config_found = True
         assert envelope_encryption_config_found is True
-    
+
     def test_unrestricted_public_endpoint_access_if_enabled(self):
         print("AWS - EKS - Managed Service - Public Endpoint Restriction")
         global cluster_description
