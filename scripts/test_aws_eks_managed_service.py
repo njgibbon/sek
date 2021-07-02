@@ -6,7 +6,7 @@ import unittest
 import os
 import boto3
 
-cluster_name = os.getenv("SEK_EKS_CLUSTER_NAME")
+cluster_name = os.getenv("SEK_AWS_EKS_CLUSTER_NAME")
  
 eks_client = boto3.client("eks")
 cluster_description = eks_client.describe_cluster(name=cluster_name)

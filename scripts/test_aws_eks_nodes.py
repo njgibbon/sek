@@ -7,7 +7,7 @@ import os
 import boto3
 import warnings
 
-cluster_name = os.getenv("SEK_EKS_CLUSTER_NAME")
+cluster_name = os.getenv("SEK_AWS_EKS_CLUSTER_NAME")
 
 eks_node_filter = [{
     "Name":"tag:kubernetes.io/cluster/"+cluster_name,
@@ -94,6 +94,15 @@ class TestAWSEKSNodes(unittest.TestCase):
                     if "DestinationCidrBlock" in r and "GatewayId" in r:
                         if r["DestinationCidrBlock"] == "0.0.0.0/0" and "igw-" in r["GatewayId"]:
                             assert False
+
+    def test_no_public_ip_dns(self):
+        print("AWS - EKS - Nodes - No Public IP or DNS")
+        global eks_nodes
+        for node in eks_nodes["Reservations"]:
+            public_dns_name = node["Instances"][0]["PublicDnsName"]
+            public_ip = node["Instances"][0]["PublicIpAddress"]
+            if public_dns_name != "" or public_ip != "":
+                assert False
 
 
 if __name__ == "__main__":

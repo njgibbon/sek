@@ -19,7 +19,7 @@ MVP Check Set.
 * Encrypted Volumes.
 * Node Security Groups.
 * Private Subnets.
-* No Public IP Attached.
+* No Public IP or DNS Name Attached.
 
 ## Other Areas Not In Scope
 * KMS Keys used for any EKS-related encryption are rotated.
