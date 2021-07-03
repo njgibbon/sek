@@ -2,4 +2,4 @@
 disable=line-too-long
 
 [FORMAT]
-good-names=sg,ip,r,rt
+good-names=sg,ip,r,rt,n

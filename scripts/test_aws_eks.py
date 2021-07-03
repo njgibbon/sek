@@ -33,8 +33,8 @@ EKS_NODES = EC2_CLIENT.describe_instances(Filters=EKS_NODE_FILTER)
 node_security_group_ids = []
 for node in EKS_NODES["Reservations"]:
     n_sgs = node["Instances"][0]["SecurityGroups"]
-    for sg in n_sgs:
-        node_security_group_ids = [].append(sg["GroupId"])
+    for n_sg in n_sgs:
+        node_security_group_ids = [].append(n_sg["GroupId"])
 NODE_SECURITY_GROUPS = EC2_CLIENT.describe_security_groups(GroupIds=node_security_group_ids)
 
 
@@ -82,8 +82,8 @@ class TestAWSEKS(unittest.TestCase):
     def test_nodes_imds(self):
         """AWS - EKS - Nodes - IMDS"""
         global EKS_NODES  # pylint: disable=global-statement
-        for node in EKS_NODES["Reservations"]:
-            metadata_options = node["Instances"][0]["MetadataOptions"]
+        for n in EKS_NODES["Reservations"]:
+            metadata_options = n["Instances"][0]["MetadataOptions"]
             if metadata_options['HttpEndpoint'] is True:
                 self.assertFalse(metadata_options["HttpTokens"] != "required")
 
@@ -125,8 +125,7 @@ class TestAWSEKS(unittest.TestCase):
             for rt in route_tables["RouteTables"]:
                 for r in rt["Routes"]:
                     if "DestinationCidrBlock" in r and "GatewayId" in r:
-                        if r["DestinationCidrBlock"] == "0.0.0.0/0" and "igw-" in r["GatewayId"]:
-                            self.assertTrue(False)
+                        self.assertFalse(r["DestinationCidrBlock"] == "0.0.0.0/0" and "igw-" in r["GatewayId"])
 
     def test_nodes_no_public_ip_dns(self):
         """AWS - EKS - Nodes - No Public IP or DNS"""
