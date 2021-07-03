@@ -40,13 +40,13 @@ NODE_SECURITY_GROUPS = EC2_CLIENT.describe_security_groups(GroupIds=node_securit
 class TestAWSEKS(unittest.TestCase):
 
     # Service Checks
-    def test_service_endpoint_access():
+    def test_service_endpoint_access(self):
         print("AWS - EKS - Service - Endpoint Access")
         global CLUSTER_DESCRIPTION
         assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is False
         assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"] is True
 
-    def test_service_control_plane_logging():
+    def test_service_control_plane_logging(self):
         print("AWS - EKS - Service - Logging")
         global CLUSTER_DESCRIPTION
         log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
@@ -55,7 +55,7 @@ class TestAWSEKS(unittest.TestCase):
             all_log_types_found = True
         assert all_log_types_found is True
 
-    def test_service_envelope_encryption_for_secrets():
+    def test_service_envelope_encryption_for_secrets(self):
         print("AWS - EKS - Service - Secret Encryption")
         global CLUSTER_DESCRIPTION
         envelope_encryption_config_found = False
@@ -64,7 +64,7 @@ class TestAWSEKS(unittest.TestCase):
                 envelope_encryption_config_found = True
         assert envelope_encryption_config_found is True
 
-    def test_service_unrestricted_public_endpoint_access_if_enabled():
+    def test_service_unrestricted_public_endpoint_access_if_enabled(self):
         print("AWS - EKS - Service - Public Endpoint Restriction")
         global CLUSTER_DESCRIPTION
         if CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
@@ -72,13 +72,13 @@ class TestAWSEKS(unittest.TestCase):
                 if ipv4_range == "0.0.0.0/0":
                     assert False
 
-    def test_service_unrestricted_security_groups_ingress():
+    def test_service_unrestricted_security_groups_ingress(self):
         print("AWS - EKS - Service - Security Groups")
         global SERVICE_SECURITY_GROUPS
-        assert unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS) is False
+        assert self.unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS) is False
 
     # Node Checks
-    def test_nodes_imds():
+    def test_nodes_imds(self):
         print("AWS - EKS - Nodes - IMDS")
         global EKS_NODES
         for node in EKS_NODES["Reservations"]:
@@ -89,12 +89,12 @@ class TestAWSEKS(unittest.TestCase):
                 if metadata_options["HttpTokens"] != "required":
                     assert False
 
-    def test_nodes_unrestricted_security_groups_ingress():
+    def test_nodes_unrestricted_security_groups_ingress(self):
         print("AWS - EKS - Nodes - Security Groups")
         global NODE_SECURITY_GROUPS
-        assert unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS) is False
+        assert self.unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS) is False
 
-    def test_nodes_volume_encryption():
+    def test_nodes_volume_encryption(self):
         print("AWS - EKS - Nodes - Volume Encryption")
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
         global EKS_NODES
@@ -105,7 +105,7 @@ class TestAWSEKS(unittest.TestCase):
                 volume = ec2_resource.Volume(device["Ebs"]["VolumeId"])
                 assert volume.encrypted is True
 
-    def test_nodes_private_subnets():
+    def test_nodes_private_subnets(self):
         print("AWS - EKS - Nodes - Private Subnets")
         global EKS_NODES
         global EC2_CLIENT
@@ -129,7 +129,7 @@ class TestAWSEKS(unittest.TestCase):
                         if r["DestinationCidrBlock"] == "0.0.0.0/0" and "igw-" in r["GatewayId"]:
                             assert False
 
-    def test_nodes_no_public_ip_dns():
+    def test_nodes_no_public_ip_dns(self):
         print("AWS - EKS - Nodes - No Public IP or DNS")
         global EKS_NODES
         for node in EKS_NODES["Reservations"]:
