@@ -16,9 +16,6 @@ export SEK_AWS_EKS_CLUSTER_NAME=<aws-eks-cluster-name>
 # All Checks
 python3 -m unittest
 
-# Managed Service Checks
-python3 test_aws_eks_managed_service.py
-
-# Node Checks
-python3 test_aws_eks_nodes.py
+# EKS Checks
+python3 test_aws_eks.py
 ```
