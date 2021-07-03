@@ -22,7 +22,7 @@ service_security_group_ids = []
 service_security_group_ids.append(CLUSTER_SECURITY_GROUP_ID)
 for sg_id in ADDITIONAL_SECURITY_GROUP_IDS:
     service_security_group_ids.append(sg_id)
-SERVICE_SECURITY_GROUPS = EC2_CLIENT.describe_SECURITY_GROUPS(GroupIds=service_security_group_ids)
+SERVICE_SECURITY_GROUPS = EC2_CLIENT.describe_security_groups(GroupIds=service_security_group_ids)
 
 # Nodes
 EKS_NODE_FILTER = [{
@@ -40,15 +40,18 @@ NODE_SECURITY_GROUPS = EC2_CLIENT.describe_security_groups(GroupIds=node_securit
 
 class TestAWSEKS(unittest.TestCase):
     """AWS - EKS"""
+    print("AWS - EKS")
     # Service Checks
     def test_service_endpoint_access(self):
         """AWS - EKS - Service - Endpoint Access"""
+        print("AWS - EKS - Service - Endpoint Access")
         global CLUSTER_DESCRIPTION  # pylint: disable=global-statement
         self.assertFalse(CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"])
         self.assertTrue(CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"])
 
     def test_service_control_plane_logging(self):
         """AWS - EKS - Service - Logging"""
+        print("AWS - EKS - Service - Logging")
         global CLUSTER_DESCRIPTION  # pylint: disable=global-statement
         log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
         all_log_types_found = False
@@ -58,6 +61,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_service_envelope_encryption_for_secrets(self):
         """AWS - EKS - Service - Secret Encryption"""
+        print("AWS - EKS - Service - Secret Encryption")
         global CLUSTER_DESCRIPTION  # pylint: disable=global-statement
         envelope_encryption_config_found = False
         for item in CLUSTER_DESCRIPTION["cluster"]["encryptionConfig"][0]["resources"]:
@@ -67,6 +71,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_service_unrestricted_public_endpoint_access_if_enabled(self):
         """AWS - EKS - Service - Public Endpoint Restriction"""
+        print("AWS - EKS - Service - Public Endpoint Restriction")
         global CLUSTER_DESCRIPTION  # pylint: disable=global-statement
         if CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
             for ipv4_range in CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["publicAccessCidrs"]:
@@ -74,6 +79,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_service_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Service - Security Groups"""
+        print("AWS - EKS - Service - Security Groups")
         global SERVICE_SECURITY_GROUPS  # pylint: disable=global-statement
         result = self.unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS)
         self.assertFalse(result)
@@ -81,6 +87,7 @@ class TestAWSEKS(unittest.TestCase):
     # Node Checks
     def test_nodes_imds(self):
         """AWS - EKS - Nodes - IMDS"""
+        print("AWS - EKS - Nodes - IMDS")
         global EKS_NODES  # pylint: disable=global-statement
         for n in EKS_NODES["Reservations"]:
             metadata_options = n["Instances"][0]["MetadataOptions"]
@@ -89,12 +96,14 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_nodes_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Nodes - Security Groups"""
+        print("AWS - EKS - Nodes - Security Groups")
         global NODE_SECURITY_GROUPS  # pylint: disable=global-statement
         result = self.unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS)
         self.assertFalse(result)
 
     def test_nodes_volume_encryption(self):
         """AWS - EKS - Nodes - Volume Encryption"""
+        print("AWS - EKS - Nodes - Volume Encryption")
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
         global EKS_NODES  # pylint: disable=global-statement
         ec2_resource = boto3.resource("ec2")
@@ -106,6 +115,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_nodes_private_subnets(self):
         """AWS - EKS - Nodes - Private Subnets"""
+        print("AWS - EKS - Nodes - Private Subnets")
         global EKS_NODES  # pylint: disable=global-statement
         global EC2_CLIENT  # pylint: disable=global-statement
         subnet_ids = []
@@ -129,6 +139,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_nodes_no_public_ip_dns(self):
         """AWS - EKS - Nodes - No Public IP or DNS"""
+        print("AWS - EKS - Nodes - No Public IP or DNS")
         global EKS_NODES  # pylint: disable=global-statement
         for n in EKS_NODES["Reservations"]:
             public_dns_name = n["Instances"][0]["PublicDnsName"]
@@ -138,7 +149,7 @@ class TestAWSEKS(unittest.TestCase):
     # Helpers
     def unrestricted_security_groups_ingress(self, sgs):  # pylint: disable=no-self-use
         """If Protocol, Ports and Range conjunction is *"""
-        for sg in sgs:
+        for sg in sgs["SecurityGroups"]:
             for ip in sg["IpPermissions"]:
                 any_protocol = False
                 any_port = False
