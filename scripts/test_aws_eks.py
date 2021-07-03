@@ -136,7 +136,7 @@ class TestAWSEKS(unittest.TestCase):
         for node in EKS_NODES["Reservations"]:
             public_dns_name = node["Instances"][0]["PublicDnsName"]
             public_ip = node["Instances"][0]["PublicIpAddress"]
-                self.assertFalse(public_dns_name != "" or public_ip != "")
+            self.assertFalse(public_dns_name != "" or public_ip != "")
 
     # Helpers
     def unrestricted_security_groups_ingress(self, sgs):  # pylint: disable=no-self-use
