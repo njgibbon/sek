@@ -44,8 +44,8 @@ class TestAWSEKS(unittest.TestCase):
     def test_service_endpoint_access(self):
         """AWS - EKS - Service - Endpoint Access"""
         global CLUSTER_DESCRIPTION  # pylint: disable=global-statement
-        assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is False
-        assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"] is True
+        self.assertFalse(LUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"])
+        self.assertTrue(CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"])
 
     def test_service_control_plane_logging(self):
         """AWS - EKS - Service - Logging"""
@@ -54,7 +54,7 @@ class TestAWSEKS(unittest.TestCase):
         all_log_types_found = False
         if all(item in CLUSTER_DESCRIPTION["cluster"]["logging"]["clusterLogging"][0]["types"] for item in log_types):
             all_log_types_found = True
-        assert all_log_types_found is True
+        self.assertTrue(all_log_types_found)
 
     def test_service_envelope_encryption_for_secrets(self):
         """AWS - EKS - Service - Secret Encryption"""
@@ -63,7 +63,7 @@ class TestAWSEKS(unittest.TestCase):
         for item in CLUSTER_DESCRIPTION["cluster"]["encryptionConfig"][0]["resources"]:
             if item == "secrets":
                 envelope_encryption_config_found = True
-        assert envelope_encryption_config_found is True
+        self.assertTrue(envelope_encryption_config_found)
 
     def test_service_unrestricted_public_endpoint_access_if_enabled(self):
         """AWS - EKS - Service - Public Endpoint Restriction"""
@@ -71,13 +71,13 @@ class TestAWSEKS(unittest.TestCase):
         if CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
             for ipv4_range in CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["publicAccessCidrs"]:
                 if ipv4_range == "0.0.0.0/0":
-                    assert False
+                    self.assertTrue(False)
 
     def test_service_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Service - Security Groups"""
         global SERVICE_SECURITY_GROUPS  # pylint: disable=global-statement
         result = self.unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS)
-        assert result is False
+        self.assertFalse(result)
 
     # Node Checks
     def test_nodes_imds(self):
@@ -89,13 +89,13 @@ class TestAWSEKS(unittest.TestCase):
                 continue
             else:
                 if metadata_options["HttpTokens"] != "required":
-                    assert False
+                    self.assertTrue(False)
 
     def test_nodes_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Nodes - Security Groups"""
         global NODE_SECURITY_GROUPS  # pylint: disable=global-statement
         result = self.unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS)
-        assert result is False
+        self.assertFalse(result)
 
     def test_nodes_volume_encryption(self):
         """AWS - EKS - Nodes - Volume Encryption"""
@@ -106,7 +106,7 @@ class TestAWSEKS(unittest.TestCase):
             devices = node["Instances"][0]["BlockDeviceMappings"]
             for device in devices:
                 volume = ec2_resource.Volume(device["Ebs"]["VolumeId"])
-                assert volume.encrypted is True
+                self.assertTrue(volume.encrypted)
 
     def test_nodes_private_subnets(self):
         """AWS - EKS - Nodes - Private Subnets"""
@@ -130,7 +130,7 @@ class TestAWSEKS(unittest.TestCase):
                 for r in rt["Routes"]:
                     if "DestinationCidrBlock" in r and "GatewayId" in r:
                         if r["DestinationCidrBlock"] == "0.0.0.0/0" and "igw-" in r["GatewayId"]:
-                            assert False
+                            self.assertTrue(False)
 
     def test_nodes_no_public_ip_dns(self):
         """AWS - EKS - Nodes - No Public IP or DNS"""
@@ -139,10 +139,10 @@ class TestAWSEKS(unittest.TestCase):
             public_dns_name = node["Instances"][0]["PublicDnsName"]
             public_ip = node["Instances"][0]["PublicIpAddress"]
             if public_dns_name != "" or public_ip != "":
-                assert False
+                self.assertTrue(False)
 
     # Helpers
-    def unrestricted_security_groups_ingress(self, sgs):
+    def unrestricted_security_groups_ingress(self, sgs):  # pylint: disable=no-self-use
         """If Protocol, Ports and Range conjunction is *"""
         for sg in sgs:
             for ip in sg["IpPermissions"]:
