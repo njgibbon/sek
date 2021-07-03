@@ -20,8 +20,8 @@ CLUSTER_SECURITY_GROUP_ID = CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]
 ADDITIONAL_SECURITY_GROUP_IDS = CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["securityGroupIds"]
 service_security_group_ids = []
 service_security_group_ids.append(CLUSTER_SECURITY_GROUP_ID)
-for id in ADDITIONAL_SECURITY_GROUP_IDS:
-    service_security_group_ids.append(id)
+for sg_id in ADDITIONAL_SECURITY_GROUP_IDS:
+    service_security_group_ids.append(sg_id)
 SERVICE_SECURITY_GROUPS = EC2_CLIENT.describe_SECURITY_GROUPS(GroupIds=service_security_group_ids)
 
 # Nodes
@@ -142,7 +142,7 @@ class TestAWSEKS(unittest.TestCase):
                 assert False
 
     # Helpers
-    def unrestricted_security_groups_ingress(sgs):
+    def unrestricted_security_groups_ingress(self, sgs):
         """If Protocol, Ports and Range conjunction is *"""
         for sg in sgs:
             for ip in sg["IpPermissions"]:
