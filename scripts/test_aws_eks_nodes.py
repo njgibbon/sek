@@ -4,8 +4,8 @@ AWS - EKS - Nodes.
 """
 import unittest
 import os
-import boto3
 import warnings
+import boto3
 
 cluster_name = os.getenv("SEK_AWS_EKS_CLUSTER_NAME")
 
