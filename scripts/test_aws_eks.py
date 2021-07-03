@@ -37,17 +37,18 @@ for node in EKS_NODES["Reservations"]:
         node_security_group_ids = [].append(sg["GroupId"])
 NODE_SECURITY_GROUPS = EC2_CLIENT.describe_security_groups(GroupIds=node_security_group_ids)
 
-class TestAWSEKS(unittest.TestCase):
 
+class TestAWSEKS(unittest.TestCase):
+    """AWS - EKS"""
     # Service Checks
     def test_service_endpoint_access(self):
-        print("AWS - EKS - Service - Endpoint Access")
+        """AWS - EKS - Service - Endpoint Access"""
         global CLUSTER_DESCRIPTION
         assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is False
         assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"] is True
 
     def test_service_control_plane_logging(self):
-        print("AWS - EKS - Service - Logging")
+        """AWS - EKS - Service - Logging"""
         global CLUSTER_DESCRIPTION
         log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
         all_log_types_found = False
@@ -56,7 +57,7 @@ class TestAWSEKS(unittest.TestCase):
         assert all_log_types_found is True
 
     def test_service_envelope_encryption_for_secrets(self):
-        print("AWS - EKS - Service - Secret Encryption")
+        """AWS - EKS - Service - Secret Encryption"""
         global CLUSTER_DESCRIPTION
         envelope_encryption_config_found = False
         for item in CLUSTER_DESCRIPTION["cluster"]["encryptionConfig"][0]["resources"]:
@@ -65,7 +66,7 @@ class TestAWSEKS(unittest.TestCase):
         assert envelope_encryption_config_found is True
 
     def test_service_unrestricted_public_endpoint_access_if_enabled(self):
-        print("AWS - EKS - Service - Public Endpoint Restriction")
+        """AWS - EKS - Service - Public Endpoint Restriction"""
         global CLUSTER_DESCRIPTION
         if CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
             for ipv4_range in CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["publicAccessCidrs"]:
@@ -73,13 +74,13 @@ class TestAWSEKS(unittest.TestCase):
                     assert False
 
     def test_service_unrestricted_security_groups_ingress(self):
-        print("AWS - EKS - Service - Security Groups")
+        """AWS - EKS - Service - Security Groups"""
         global SERVICE_SECURITY_GROUPS
         assert self.unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS) is False
 
     # Node Checks
     def test_nodes_imds(self):
-        print("AWS - EKS - Nodes - IMDS")
+        """AWS - EKS - Nodes - IMDS"""
         global EKS_NODES
         for node in EKS_NODES["Reservations"]:
             metadata_options = node["Instances"][0]["MetadataOptions"]
@@ -90,12 +91,12 @@ class TestAWSEKS(unittest.TestCase):
                     assert False
 
     def test_nodes_unrestricted_security_groups_ingress(self):
-        print("AWS - EKS - Nodes - Security Groups")
+        """AWS - EKS - Nodes - Security Groups"""
         global NODE_SECURITY_GROUPS
         assert self.unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS) is False
 
     def test_nodes_volume_encryption(self):
-        print("AWS - EKS - Nodes - Volume Encryption")
+        """AWS - EKS - Nodes - Volume Encryption"""
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
         global EKS_NODES
         ec2_resource = boto3.resource("ec2")
@@ -106,7 +107,7 @@ class TestAWSEKS(unittest.TestCase):
                 assert volume.encrypted is True
 
     def test_nodes_private_subnets(self):
-        print("AWS - EKS - Nodes - Private Subnets")
+        """AWS - EKS - Nodes - Private Subnets"""
         global EKS_NODES
         global EC2_CLIENT
         subnet_ids = []
@@ -130,17 +131,17 @@ class TestAWSEKS(unittest.TestCase):
                             assert False
 
     def test_nodes_no_public_ip_dns(self):
-        print("AWS - EKS - Nodes - No Public IP or DNS")
+        """AWS - EKS - Nodes - No Public IP or DNS"""
         global EKS_NODES
         for node in EKS_NODES["Reservations"]:
             public_dns_name = node["Instances"][0]["PublicDnsName"]
             public_ip = node["Instances"][0]["PublicIpAddress"]
             if public_dns_name != "" or public_ip != "":
                 assert False
-    
+
     # Helpers
     def unrestricted_security_groups_ingress(sgs):
-        # If Protocol, Ports and Range conjunction is *
+        """If Protocol, Ports and Range conjunction is *"""
         for sg in sgs:
             for ip in sg["IpPermissions"]:
                 any_protocol = False
