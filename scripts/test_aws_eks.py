@@ -43,13 +43,13 @@ class TestAWSEKS(unittest.TestCase):
     # Service Checks
     def test_service_endpoint_access(self):
         """AWS - EKS - Service - Endpoint Access"""
-        global CLUSTER_DESCRIPTION
+        global CLUSTER_DESCRIPTION # pylint: disable=global-statement
         assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is False
         assert CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"] is True
 
     def test_service_control_plane_logging(self):
         """AWS - EKS - Service - Logging"""
-        global CLUSTER_DESCRIPTION
+        global CLUSTER_DESCRIPTION # pylint: disable=global-statement
         log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
         all_log_types_found = False
         if all(item in CLUSTER_DESCRIPTION["cluster"]["logging"]["clusterLogging"][0]["types"] for item in log_types):
@@ -58,7 +58,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_service_envelope_encryption_for_secrets(self):
         """AWS - EKS - Service - Secret Encryption"""
-        global CLUSTER_DESCRIPTION
+        global CLUSTER_DESCRIPTION # pylint: disable=global-statement
         envelope_encryption_config_found = False
         for item in CLUSTER_DESCRIPTION["cluster"]["encryptionConfig"][0]["resources"]:
             if item == "secrets":
@@ -67,7 +67,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_service_unrestricted_public_endpoint_access_if_enabled(self):
         """AWS - EKS - Service - Public Endpoint Restriction"""
-        global CLUSTER_DESCRIPTION
+        global CLUSTER_DESCRIPTION # pylint: disable=global-statement
         if CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
             for ipv4_range in CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["publicAccessCidrs"]:
                 if ipv4_range == "0.0.0.0/0":
@@ -75,13 +75,13 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_service_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Service - Security Groups"""
-        global SERVICE_SECURITY_GROUPS
+        global SERVICE_SECURITY_GROUPS # pylint: disable=global-statement
         assert self.unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS) is False
 
     # Node Checks
     def test_nodes_imds(self):
         """AWS - EKS - Nodes - IMDS"""
-        global EKS_NODES
+        global EKS_NODES # pylint: disable=global-statement
         for node in EKS_NODES["Reservations"]:
             metadata_options = node["Instances"][0]["MetadataOptions"]
             if metadata_options['HttpEndpoint'] is False:
@@ -92,13 +92,13 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_nodes_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Nodes - Security Groups"""
-        global NODE_SECURITY_GROUPS
+        global NODE_SECURITY_GROUPS # pylint: disable=global-statement
         assert self.unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS) is False
 
     def test_nodes_volume_encryption(self):
         """AWS - EKS - Nodes - Volume Encryption"""
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
-        global EKS_NODES
+        global EKS_NODES # pylint: disable=global-statement
         ec2_resource = boto3.resource("ec2")
         for node in EKS_NODES["Reservations"]:
             devices = node["Instances"][0]["BlockDeviceMappings"]
@@ -108,8 +108,8 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_nodes_private_subnets(self):
         """AWS - EKS - Nodes - Private Subnets"""
-        global EKS_NODES
-        global EC2_CLIENT
+        global EKS_NODES # pylint: disable=global-statement
+        global EC2_CLIENT # pylint: disable=global-statement
         subnet_ids = []
         # Obtain Node Subnet IDs
         for node in EKS_NODES["Reservations"]:
@@ -132,7 +132,7 @@ class TestAWSEKS(unittest.TestCase):
 
     def test_nodes_no_public_ip_dns(self):
         """AWS - EKS - Nodes - No Public IP or DNS"""
-        global EKS_NODES
+        global EKS_NODES # pylint: disable=global-statement
         for node in EKS_NODES["Reservations"]:
             public_dns_name = node["Instances"][0]["PublicDnsName"]
             public_ip = node["Instances"][0]["PublicIpAddress"]
