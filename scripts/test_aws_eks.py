@@ -84,9 +84,7 @@ class TestAWSEKS(unittest.TestCase):
         global EKS_NODES  # pylint: disable=global-statement
         for node in EKS_NODES["Reservations"]:
             metadata_options = node["Instances"][0]["MetadataOptions"]
-            if metadata_options['HttpEndpoint'] is False:
-                continue
-            else:
+            if metadata_options['HttpEndpoint'] is True:
                 self.assertFalse(metadata_options["HttpTokens"] != "required")
 
     def test_nodes_unrestricted_security_groups_ingress(self):
@@ -100,8 +98,8 @@ class TestAWSEKS(unittest.TestCase):
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
         global EKS_NODES  # pylint: disable=global-statement
         ec2_resource = boto3.resource("ec2")
-        for node in EKS_NODES["Reservations"]:
-            devices = node["Instances"][0]["BlockDeviceMappings"]
+        for n in EKS_NODES["Reservations"]:
+            devices = n["Instances"][0]["BlockDeviceMappings"]
             for device in devices:
                 volume = ec2_resource.Volume(device["Ebs"]["VolumeId"])
                 self.assertTrue(volume.encrypted)
@@ -112,8 +110,8 @@ class TestAWSEKS(unittest.TestCase):
         global EC2_CLIENT  # pylint: disable=global-statement
         subnet_ids = []
         # Obtain Node Subnet IDs
-        for node in EKS_NODES["Reservations"]:
-            subnet_id = node["Instances"][0]["SubnetId"]
+        for n in EKS_NODES["Reservations"]:
+            subnet_id = n["Instances"][0]["SubnetId"]
             if subnet_id not in subnet_ids:
                 subnet_ids.append(subnet_id)
         # Obtain Route Tables associated to Subnets
@@ -133,9 +131,9 @@ class TestAWSEKS(unittest.TestCase):
     def test_nodes_no_public_ip_dns(self):
         """AWS - EKS - Nodes - No Public IP or DNS"""
         global EKS_NODES  # pylint: disable=global-statement
-        for node in EKS_NODES["Reservations"]:
-            public_dns_name = node["Instances"][0]["PublicDnsName"]
-            public_ip = node["Instances"][0]["PublicIpAddress"]
+        for n in EKS_NODES["Reservations"]:
+            public_dns_name = n["Instances"][0]["PublicDnsName"]
+            public_ip = n["Instances"][0]["PublicIpAddress"]
             self.assertFalse(public_dns_name != "" or public_ip != "")
 
     # Helpers
