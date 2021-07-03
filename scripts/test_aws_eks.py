@@ -41,7 +41,7 @@ NODE_SECURITY_GROUPS = EC2_CLIENT.describe_security_groups(GroupIds=node_securit
 class TestAWSEKS(unittest.TestCase):
     """AWS - EKS"""
     print("AWS - EKS")
-    
+
     # Service Checks
     def test_service_endpoint_access(self):
         """AWS - EKS - Service - Endpoint Access"""
