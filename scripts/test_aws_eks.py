@@ -76,7 +76,8 @@ class TestAWSEKS(unittest.TestCase):
     def test_service_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Service - Security Groups"""
         global SERVICE_SECURITY_GROUPS # pylint: disable=global-statement
-        assert self.unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS) is False
+        result = self.unrestricted_security_groups_ingress(SERVICE_SECURITY_GROUPS)
+        assert result is False
 
     # Node Checks
     def test_nodes_imds(self):
@@ -93,7 +94,8 @@ class TestAWSEKS(unittest.TestCase):
     def test_nodes_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Nodes - Security Groups"""
         global NODE_SECURITY_GROUPS # pylint: disable=global-statement
-        assert self.unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS) is False
+        results = self.unrestricted_security_groups_ingress(NODE_SECURITY_GROUPS)
+        assert result is False
 
     def test_nodes_volume_encryption(self):
         """AWS - EKS - Nodes - Volume Encryption"""
