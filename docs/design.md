@@ -4,22 +4,18 @@
 MVP Check Set.
 
 ## EKS
-
-### Managed Service
-* Logging - Audit logs.
-* Secrets - Envelope Encryption.
-* Private Endpoint enabled. Public Endpoint disabled.
-* Public Endpoint Firewall if exists.
-* Cluster SG - No unrestricted access.
-* Additional SGs - No unrestricted access.
-* HTTPS - Built In.
-
-### Nodes
-* Instance Metadata Service Options.
-* Encrypted Volumes.
-* Node Security Groups.
-* Private Subnets.
-* No Public IP or DNS Name Attached.
+* Service - Logging - Audit logs.
+* Service - Secrets - Envelope Encryption.
+* Service - Private Endpoint enabled. Public Endpoint disabled.
+* Service - Public Endpoint Firewall if exists.
+* Service - Cluster SG - No unrestricted access.
+* Service - Additional SGs - No unrestricted access.
+* Service - HTTPS - Built In.
+* Nodes - Instance Metadata Service Options.
+* Nodes - Encrypted Volumes.
+* Nodes - Security Groups.
+* Nodes - Private Subnets.
+* Nodes - No Public IP or DNS Name Attached.
 
 ## Other Areas Not In Scope
 * KMS Keys used for any EKS-related encryption are rotated.
@@ -42,7 +38,7 @@ MVP Check Set.
 * Atomic / Default.
 
 # Language
-* Py / Go.
+* Py.
 
 # Structure
 * CheckSets.

@@ -44,7 +44,7 @@ class TestAWSEKS(unittest.TestCase):
     def test_service_endpoint_access(self):
         """AWS - EKS - Service - Endpoint Access"""
         global CLUSTER_DESCRIPTION  # pylint: disable=global-statement
-        self.assertFalse(LUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"])
+        self.assertFalse(CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"])
         self.assertTrue(CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPrivateAccess"])
 
     def test_service_control_plane_logging(self):
@@ -70,8 +70,7 @@ class TestAWSEKS(unittest.TestCase):
         global CLUSTER_DESCRIPTION  # pylint: disable=global-statement
         if CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"] is True:
             for ipv4_range in CLUSTER_DESCRIPTION["cluster"]["resourcesVpcConfig"]["publicAccessCidrs"]:
-                if ipv4_range == "0.0.0.0/0":
-                    self.assertTrue(False)
+                self.assertFalse(ipv4_range == "0.0.0.0/0")
 
     def test_service_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Service - Security Groups"""
@@ -88,8 +87,7 @@ class TestAWSEKS(unittest.TestCase):
             if metadata_options['HttpEndpoint'] is False:
                 continue
             else:
-                if metadata_options["HttpTokens"] != "required":
-                    self.assertTrue(False)
+                self.assertFalse(metadata_options["HttpTokens"] != "required")
 
     def test_nodes_unrestricted_security_groups_ingress(self):
         """AWS - EKS - Nodes - Security Groups"""
@@ -138,8 +136,7 @@ class TestAWSEKS(unittest.TestCase):
         for node in EKS_NODES["Reservations"]:
             public_dns_name = node["Instances"][0]["PublicDnsName"]
             public_ip = node["Instances"][0]["PublicIpAddress"]
-            if public_dns_name != "" or public_ip != "":
-                self.assertTrue(False)
+                self.assertFalse(public_dns_name != "" or public_ip != "")
 
     # Helpers
     def unrestricted_security_groups_ingress(self, sgs):  # pylint: disable=no-self-use
