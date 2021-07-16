@@ -1,8 +1,22 @@
+import argparse
+import os
+
+
+arg_parser = argparse.ArgumentParser()
+arg_parser.add_argument('--cloud', action='store', type=str, required=True)
+arg_parser.add_argument('--resource', action='store', type=str, required=True)
+arg_parser.add_argument('--name', action='store', type=str, required=True)
+args = arg_parser.parse_args()
+
+CLOUD = args.cloud
+RESOURCE = args.resource
+NAME = args.name
+
 print("Sek - Runtime Cloud Security and Misconfiguration Scanning")
 print("-----")
 print("Scan")
 print("-----")
-print("Cloud: AWS - Service: EKS - Name: test")
+print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME)
 print("-----")
 print("Results")
 print("-----")
