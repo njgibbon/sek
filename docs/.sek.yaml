@@ -4,4 +4,3 @@ aws:
       cluster_name: test
       skip:
         - private-endpoint
-        - 

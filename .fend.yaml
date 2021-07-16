@@ -1,0 +1,6 @@
+skip:
+  file_all: 
+    - __init__.py
+  extension: 
+    - .png
+
