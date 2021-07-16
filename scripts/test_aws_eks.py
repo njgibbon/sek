@@ -34,7 +34,7 @@ node_security_group_ids = []
 for node in EKS_NODES["Reservations"]:
     n_sgs = node["Instances"][0]["SecurityGroups"]
     for n_sg in n_sgs:
-        node_security_group_ids = [].append(n_sg["GroupId"])
+        node_security_group_ids.append(n_sg["GroupId"])
 NODE_SECURITY_GROUPS = EC2_CLIENT.describe_security_groups(GroupIds=node_security_group_ids)
 
 
