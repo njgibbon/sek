@@ -65,7 +65,7 @@ jobs:
 
     - name: Bandit
       run: |
-        bandit -r scripts -c .bandit.yaml
+        bandit -r scripts
 
   fend:
     name: Fend
