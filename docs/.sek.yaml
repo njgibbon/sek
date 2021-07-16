@@ -1,6 +1,7 @@
 aws:
   eks:
-    atomic:
-      cluster_name: test
-      skip:
-        - private-endpoint
+    cluster_name: test
+    skip:
+      - private-endpoint
+      - security-groups
+

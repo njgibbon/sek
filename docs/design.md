@@ -8,15 +8,14 @@ MVP Check Set.
 * Service - Secrets - Envelope Encryption.
 * Service - Private Endpoint enabled. Public Endpoint disabled.
 * Service - Public Endpoint Firewall if exists.
-* Service - Cluster SG - No unrestricted access.
-* Service - Additional SGs - No unrestricted access.
+* Service - Cluster SGs - No unrestricted access.
 * Nodes - Instance Metadata Service Options.
 * Nodes - Encrypted Volumes.
 * Nodes - Security Groups.
 * Nodes - Private Subnets.
 * Nodes - No Public IP or DNS Name Attached.
 
-## Other Areas Not In Scope
+## Areas Not In Scope
 * KMS Keys used for any EKS-related encryption are rotated.
 * General IAM best practises.
 * In-Cluster Kubernetes Security Best Practises.
@@ -30,11 +29,12 @@ MVP Check Set.
 * Environment vars.
 * Precedence.
 * Skip checks.
-* Target tags.
+
 
 # Modes
 * Atomic / Default.  
 * Audit.
+
 # Structure
 * CheckSets.
 * Checks.
@@ -54,4 +54,3 @@ MVP Check Set.
 * Publication.
 * Enablement structures.
 * Further testing.
-
