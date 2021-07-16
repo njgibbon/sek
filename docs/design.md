@@ -10,7 +10,6 @@ MVP Check Set.
 * Service - Public Endpoint Firewall if exists.
 * Service - Cluster SG - No unrestricted access.
 * Service - Additional SGs - No unrestricted access.
-* Service - HTTPS - Built In.
 * Nodes - Instance Metadata Service Options.
 * Nodes - Encrypted Volumes.
 * Nodes - Security Groups.
@@ -27,19 +26,15 @@ MVP Check Set.
 # Configuration
 * CLI Inputs.
 * CLI Outputs.
-* Config file.
+* Config file(s).
 * Environment vars.
 * Precedence.
 * Skip checks.
 * Target tags.
 
 # Modes
+* Atomic / Default.  
 * Audit.
-* Atomic / Default.
-
-# Language
-* Py.
-
 # Structure
 * CheckSets.
 * Checks.

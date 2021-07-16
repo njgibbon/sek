@@ -1,0 +1,7 @@
+aws:
+  eks:
+    atomic:
+      cluster_name: test
+      skip:
+        - private-endpoint
+        - 
