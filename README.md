@@ -2,8 +2,6 @@
 
 Runtime Cloud Security and Misconfiguration Scanning.
 
-First focus on AWS - EKS. SEK - EKS - SEK. Get it?
-
 # scripts
 Concept / MVP logic.
 
