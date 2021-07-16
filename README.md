@@ -1,6 +1,4 @@
 ![sek](images/sek.png)
-
-# Sek
 Runtime Cloud Security and Misconfiguration Scanning.
 
 First focus on AWS - EKS. SEK - EKS - SEK. Get it?
