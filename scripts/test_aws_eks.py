@@ -143,9 +143,11 @@ class TestAWSEKS(unittest.TestCase):
         print("AWS - EKS - Nodes - No Public IP or DNS")
         global EKS_NODES  # pylint: disable=global-statement
         for n in EKS_NODES["Reservations"]:
-            public_dns_name = n["Instances"][0]["PublicDnsName"]
-            public_ip = n["Instances"][0]["PublicIpAddress"]
-            self.assertFalse(public_dns_name != "" or public_ip != "")
+            instance = n["Instances"][0]
+            public_dns_name = instance.get("PublicDnsName")
+            public_ip = instance.get("PublicIpAddress")
+            self.assertTrue(public_dns_name == "")
+            self.assertTrue(public_ip is None)
 
     # Helpers
     def unrestricted_security_groups_ingress(self, sgs):  # pylint: disable=no-self-use
