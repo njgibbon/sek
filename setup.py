@@ -7,7 +7,7 @@ setup(
     packages=["src"],
     entry_points={
         'console_scripts': [
-            'sek = src.sek:main',
+            'sek = src.main:main',
         ],
     }
 )
