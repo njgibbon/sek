@@ -19,12 +19,20 @@ Organisation, structure, content, reasoning and support information for all Chec
 
 # Use
 
-# Install
+## Install
+```
+pip3 install sek
+```
+
+## Configure
 TODO
 
-# Run
-TODO
+## Run
+```
+# Example
+sek --cloud=aws --resource=eks --name=test
+```
 
 
 # Contributing
-TODO
+[contributing.md](contributing.md)
