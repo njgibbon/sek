@@ -2,6 +2,9 @@
 
 Runtime Cloud Security and Misconfiguration Scanning.
 
+# Status
+Pre-pre-release. Just trying some things and working out how stuff might fit together.
+
 
 # Overview
 TODO
