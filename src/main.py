@@ -1,6 +1,19 @@
 import argparse
 import os
 
+import boto3
+
+
+class EKSContext:
+    cloud="aws"
+    resource="eks"
+    eks_client = boto3.client("eks")
+    ec2_client = boto3.client("ec2")
+
+    def __init__(self, name):
+        self.name = name
+        self.cluster_description = self.eks_client.describe_cluster(name=name)
+
 
 def main():
     arg_parser = argparse.ArgumentParser()
@@ -41,6 +54,10 @@ def main():
     print("Skipped: 0 - (0.00%)")
     print("Errors: 0 - (0.00%)")
 
+    eks_context = EKSContext(NAME)
+    print(eks_context.cloud)
+    print(eks_context.resource)
+    print(eks_context.name)
 
 if __name__ == '__main__':
     main()
