@@ -1,17 +1,13 @@
-from setuptools import setup, find_packages
-
-setup(
-    name="sek",
-    version="0.0.1",
-    author="Nick Gibbon",
-    packages=find_packages(),
-)
+from setuptools import setup
 
 setup(
     name='sek',
+    version='0.0.6',
+    author="Nick Gibbon",
+    packages=["src"],
     entry_points={
         'console_scripts': [
-            'sek = sek:main',
+            'sek = src.sek:main',
         ],
     }
 )
