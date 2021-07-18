@@ -4,7 +4,7 @@ TODO
 # CIS Actionable Areas
 2. Control Plane Configuration - Sek.
 3. Worker Nodes - Kube-Bench.
-4. Policies - Gap.
+4. Policies - Gap. Consider Checkov.
 5. Managed Services - Sek*.
 
 # Resources
