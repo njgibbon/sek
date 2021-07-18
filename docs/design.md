@@ -1,5 +1,6 @@
 # Design
 
+
 # Checks
 MVP Check Set.
 
@@ -24,6 +25,8 @@ MVP Check Set.
 * In-Cluster Kubernetes Security Best Practises.
 * Network Audit - VPC Flow Logs.
 * Managed Service Actions Audit - CloudTrail.
+* CloudWatch CMKs.
+
 
 # Configuration
 * CLI Inputs.
@@ -38,19 +41,24 @@ MVP Check Set.
 * Atomic / Default.  
 * Audit.
 
+
 # Structure
+* Pakage needs to work programatically outside of CLI.
 * CheckSets.
 * Checks.
 * Tagging system.
 * Testing.
 * Areas of self-containment / independence vs. efficiencies of grouping.
 
+
 # AWS Permissions
 * Minimal permissions per check-set and config and examples.
+
 
 # Documentation
 * Overview.
 * Contributing.
+
 
 # Automation
 * Process.
