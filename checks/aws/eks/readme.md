@@ -1,6 +1,11 @@
 # EKS
 TODO
 
+# CIS Actionable Areas
+2. Control Plane Configuration - Sek.
+3. Worker Nodes - Kube-Bench.
+4. Policies - Gap.
+5. Managed Services - Sek*.
 
 # Resources
 * CIS Benchmarks - Kubernetes - EKS - v1.0.1 - https://learn.cisecurity.org/benchmarks

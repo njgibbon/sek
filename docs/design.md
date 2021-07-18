@@ -15,9 +15,8 @@ MVP Check Set.
 * Nodes - Security Groups.
 * Nodes - Private Subnets.
 * Nodes - No Public IP or DNS Name Attached.
-* Nodes - Node Role minimal permissions?
-* Nodes - Node Role read only access to ECR?
-* Nodes - VPC Endpoint for ECR?
+* Nodes - Node Role minimal permissions = IRSA.
+* Nodes - Node Role read only access to ECR.
 
 ## Areas Not In Scope
 * KMS Keys used for any EKS-related encryption are rotated.
@@ -26,6 +25,7 @@ MVP Check Set.
 * Network Audit - VPC Flow Logs.
 * Managed Service Actions Audit - CloudTrail.
 * CloudWatch CMKs.
+* Nodes - VPC Endpoint for ECR.
 
 
 # Configuration
