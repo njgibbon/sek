@@ -14,6 +14,9 @@ MVP Check Set.
 * Nodes - Security Groups.
 * Nodes - Private Subnets.
 * Nodes - No Public IP or DNS Name Attached.
+* Nodes - Node Role minimal permissions?
+* Nodes - Node Role read only access to ECR?
+* Nodes - VPC Endpoint for ECR?
 
 ## Areas Not In Scope
 * KMS Keys used for any EKS-related encryption are rotated.
