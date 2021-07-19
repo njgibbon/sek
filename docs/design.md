@@ -70,3 +70,5 @@ MVP Check Set.
 # Scratch
 
 main > CheckInit > CheckSet > Check
+
+Kube-bench and sek, checkov with fails situational, how much of cis eks benchmark is left un-automated? And then how much could be?
