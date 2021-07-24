@@ -1,8 +1,8 @@
-class CoreRunner(): 
-    def __init__(self, cloud, resource, name):
-        print("Runner")
-        self.cloud = cloud
-        self.resource = resource
+class CoreRunner():
+    def __init__(self, name):
+        print("Core Runner")
+        self.cloud = None
+        self.resource = None
         self.name = name
         self.context = None
         self.checks = []
@@ -12,7 +12,7 @@ class CoreRunner():
             check.scan()
 
     def output_results():
-        for check in checks:
+        for check in self.checks:
             print(check.name + ": " + check.result)
             print()
 
@@ -21,4 +21,3 @@ class CoreRunner():
 
     def all_passed():
         pass
-
