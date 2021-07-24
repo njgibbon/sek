@@ -3,16 +3,24 @@ import os
 
 import boto3
 
+class EKSRunner:
+    def __init__(self, name):
+        print("runner")
+        self.eks_context = EKSContext(name)
+        self.eks_check = EKSCheck(self.eks_context)
 
 class EKSContext:
     cloud="aws"
     resource="eks"
-    eks_client = boto3.client("eks")
-    ec2_client = boto3.client("ec2")
-
     def __init__(self, name):
+        print("context")
         self.name = name
-        self.cluster_description = self.eks_client.describe_cluster(name=name)
+
+
+class EKSCheck:
+    def __init__(self, eks_context):
+        print("check")
+        print(eks_context.cloud)
 
 
 def main():
@@ -25,6 +33,9 @@ def main():
     CLOUD = args.cloud
     RESOURCE = args.resource
     NAME = args.name
+
+    if CLOUD == "aws" and RESOURCE == "eks":
+        eks_runner = EKSRunner(NAME)
 
     print("Sek - Runtime Cloud Security and Misconfiguration Scanning")
     print("-----")
@@ -54,10 +65,21 @@ def main():
     print("Skipped: 0 - (0.00%)")
     print("Errors: 0 - (0.00%)")
 
-    eks_context = EKSContext(NAME)
-    print(eks_context.cloud)
-    print(eks_context.resource)
-    print(eks_context.name)
+    # eks_context = EKSContext(NAME)
+    # print(eks_context.cloud)
+    # print(eks_context.resource)
+    # print(eks_context.name)
 
 if __name__ == '__main__':
     main()
+
+
+# class EKSContext:
+#     cloud="aws"
+#     resource="eks"
+#     eks_client = boto3.client("eks")
+#     ec2_client = boto3.client("ec2")
+
+#     def __init__(self, name):
+#         self.name = name
+#         self.cluster_description = self.eks_client.describe_cluster(name=name)
