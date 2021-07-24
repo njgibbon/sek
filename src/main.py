@@ -7,7 +7,11 @@ class EKSRunner:
     def __init__(self, name):
         print("runner")
         self.eks_context = EKSContext(name)
-        self.eks_check = EKSCheck(self.eks_context)
+        self.checks = []
+        self.checks.append(Check1(self.eks_context))
+        self.checks.append(Check2(self.eks_context))
+        for check in self.checks:
+            check.oot()
 
 class EKSContext:
     cloud="aws"
@@ -22,6 +26,15 @@ class EKSCheck:
         print("check")
         print(eks_context.cloud)
 
+class Check1(EKSCheck):
+    typet = "check1"
+    def oot(self):
+        print(self.typet)
+
+class Check2(EKSCheck):
+    typet = "check2"
+    def oot(self):
+        print(self.typet)
 
 def main():
     arg_parser = argparse.ArgumentParser()
@@ -83,3 +96,11 @@ if __name__ == '__main__':
 #     def __init__(self, name):
 #         self.name = name
 #         self.cluster_description = self.eks_client.describe_cluster(name=name)
+
+# cloud
+# resource
+# name
+# context
+# id
+# result
+# message
