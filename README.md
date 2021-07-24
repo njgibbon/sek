@@ -1,6 +1,6 @@
 ![sek](images/sek.png)
 
-Runtime Cloud Security and Misconfiguration Scanning.
+Runtime Cloud Security Scanning.
 
 # Status
 Concept / Dev / Test / Pre-pre-release. Just trying some things and working out how stuff might fit together.

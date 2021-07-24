@@ -16,7 +16,7 @@ def main():
     RESOURCE = args.resource
     NAME = args.name
 
-    print("Sek - Runtime Cloud Security and Misconfiguration Scanning")
+    print("Sek - Runtime Cloud Security Scanning")
     print("-----")
     print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME)
     print("-----")
@@ -35,6 +35,9 @@ def main():
     print("-----")
     print("Time: " + str(runner.time) + "s")
     print("Checks: " + str(len(runner.checks)))
+    print("Passed: ")
+    print("Failed: ")
+    print("Error: ")
 
 
 if __name__ == '__main__':

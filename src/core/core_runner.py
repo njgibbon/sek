@@ -21,6 +21,3 @@ class CoreRunner():
 
     def all_passed(self):
         pass
-
-    def output_time(self):
-        print(self.time)
