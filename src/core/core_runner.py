@@ -1,4 +1,4 @@
-class Runner(object): 
+class CoreRunner(): 
     def __init__(self, cloud, resource, name):
         print("Runner")
         self.cloud = cloud

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Check(object): 
+class CoreCheck(): 
     def __init__(self, context):
         print("Check")
         self.cloud = None

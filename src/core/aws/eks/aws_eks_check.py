@@ -1,5 +1,5 @@
-from ...check import Check as CoreCheck
-class Check(CoreCheck): 
+from ...core_check import CoreCheck
+class AWSEKSCheck(CoreCheck): 
     def __init__(self, context):
         print("EKS Check")
         super().__init__(context)

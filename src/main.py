@@ -1,7 +1,7 @@
 import argparse
 import os
 import boto3
-from core.aws.eks.runner import Runner as AWSEKSRunner
+from core.aws.eks.aws_eks_runner import AWSEKSRunner
 
 # class EKSRunner:
 #     def __init__(self, name):
