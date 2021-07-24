@@ -26,18 +26,17 @@ def main():
         print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/tree/main/checks")
         sys.exit(1)
 
-    runner.results()
+    print(runner.format_results(), end = "")
     print("-----")
     print("Check Document: " + runner.link)
     print("-----")
     print("Stats")
     print("-----")
-    print("Time: " + str(runner.time) + "s")
-    print("Checks: " + str(len(runner.checks)))
-    print("Passed: x")
-    print("Failed: y")
-    print("Error: z")
-    runner.stats()
+    print(runner.format_stats())
+
+    stats = runner.stats()
+    if stats["checks"] != stats["passed"]:
+        sys.exit(1)
 
 
 if __name__ == '__main__':
