@@ -16,13 +16,11 @@ def main():
     RESOURCE = args.resource
     NAME = args.name
 
-    print("Sek - Runtime Cloud Security Scanning")
-    print("-----")
-    print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME)
-    print("-----")
+    print("Sek - Runtime Cloud Security Scanning\n-----")
+    print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME + "\n-----")
+    
     if ( CLOUD == "aws" or CLOUD == "AWS" ) and ( RESOURCE == "eks" or RESOURCE == "EKS" ):
-        print("Scan")
-        print("-----")
+        print("Scan\n-----")
         runner = AWSEKSRunner(NAME)
     else:
         print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/tree/main/checks")
