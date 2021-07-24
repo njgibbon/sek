@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 
 class CoreCheck(): 
     def __init__(self, resource_name, context):
-        print("Core Check")
         self.cloud = None
         self.resource = None
         self.resource_name = resource_name

@@ -21,8 +21,6 @@ def main():
     print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME)
     print("-----")
     if ( CLOUD == "aws" or CLOUD == "AWS" ) and ( RESOURCE == "eks" or RESOURCE == "EKS" ):
-        print("Check Document: https://github.com/njgibbon/sek/blob/main/checks/aws/eks")
-        print("-----")
         print("Scan")
         print("-----")
         runner = AWSEKSRunner(NAME)
@@ -30,15 +28,17 @@ def main():
         print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/tree/main/checks")
         sys.exit(1)
 
+    runner.results()
+    print("-----")
+    print("Check Document: " + runner.link)
     print("-----")
     print("Stats")
     print("-----")
     print("Time: " + str(runner.time) + "s")
     print("Checks: " + str(len(runner.checks)))
-    print("Passed: ")
-    print("Failed: ")
-    print("Error: ")
-    runner.results()
+    print("Passed: x")
+    print("Failed: y")
+    print("Error: z")
     runner.stats()
 
 

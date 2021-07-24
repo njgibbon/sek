@@ -14,8 +14,7 @@ class CoreRunner():
     def results(self):
         results = {}
         for check in self.checks:
-            print(check.name)
-            print(check.result)
+            print(check.name + ": " + check.result)
 
     def stats(self):
         pass

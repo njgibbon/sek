@@ -8,7 +8,6 @@ class AWSEKSContext(CoreContext):
     ec2_client = boto3.client("ec2")
 
     def __init__(self, name):
-        print("EKS Context")
         super().__init__(name)
         self.cloud = "aws"
         self.resource = "eks"
