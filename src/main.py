@@ -38,6 +38,8 @@ def main():
     print("Passed: ")
     print("Failed: ")
     print("Error: ")
+    runner.results()
+    runner.stats()
 
 
 if __name__ == '__main__':

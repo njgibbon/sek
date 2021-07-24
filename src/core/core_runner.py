@@ -11,13 +11,11 @@ class CoreRunner():
         for check in self.checks:
             check.scan()
 
-    def output_results(self):
+    def results(self):
+        results = {}
         for check in self.checks:
-            print(check.name + ": " + check.result)
-            print()
+            print(check.name)
+            print(check.result)
 
-    def output_stats(self):
-        pass
-
-    def all_passed(self):
+    def stats(self):
         pass
