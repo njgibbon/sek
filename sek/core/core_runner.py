@@ -60,8 +60,8 @@ class CoreRunner():
         stats = self.stats()
         time_string = "Time: " + str(stats["time"]) + "s\n"
         check_string = "Checks: " + str(stats["checks"]) + "\n"
-        pass_string = "Pass: " + str(stats["passed"]) + " - (" + str(stats["passed_percent"]) + ")\n"
-        fail_string = "Fail: " + str(stats["failed"]) + " - (" + str(stats["failed_percent"]) + ")\n"
-        err_string = "Error: " + str(stats["error"]) + " - (" + str(stats["error_percent"]) + ")\n"
+        pass_string = "Pass: " + str(stats["passed"]) + " - (" + str(stats["passed_percent"]) + "%)\n"
+        fail_string = "Fail: " + str(stats["failed"]) + " - (" + str(stats["failed_percent"]) + "%)\n"
+        err_string = "Error: " + str(stats["error"]) + " - (" + str(stats["error_percent"]) + "%)\n"
         stats_string = time_string + check_string + pass_string + fail_string + err_string
         return stats_string

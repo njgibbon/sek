@@ -13,5 +13,4 @@ class AWSEKSContext(CoreContext):
         self.resource = "eks"
         self.new = "new"
         self.frog = "bababa"
-        # self.cluster_description = self.eks_client.describe_cluster(name=name)
-
+        self.cluster_description = self.eks_client.describe_cluster(name=name)

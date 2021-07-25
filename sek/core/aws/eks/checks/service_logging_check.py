@@ -7,4 +7,11 @@ class ServiceLoggingCheck(AWSEKSCheck):
         self.name = "service-logging"
 
     def scan(self):
-        self.result = "PASS"
+        log_types = ["audit", "api", "authenticator", "controllerManager", "scheduler"]
+        all_log_types_found = False
+        if all(item in self.context.cluster_description["cluster"]["logging"]["clusterLogging"][0]["types"] for item in log_types):
+            all_log_types_found = True
+        if all_log_types_found == True:
+            self.result = "PASS"
+        else:
+            self.result = "FAIL"

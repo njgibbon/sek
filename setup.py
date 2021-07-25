@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='sek',
-    version='0.0.10',
+    version='0.0.11',
     author="Nick Gibbon",
     packages=find_packages(),
     entry_points={
