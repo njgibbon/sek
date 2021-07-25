@@ -30,11 +30,17 @@ No unrestricted inbound access to the control-plane. Security Groups can restric
 * CIS Benchmarks - AWS - Foundations - v1.0.4 - 5.2 Networking - Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports.
 
 ## node-imds
-Instance Metadata Service Options.
+The Instance Metadata Service is where EC2 Instances obtain Role Security Credentials. If it is not needed then it should be disabled. For EKS, some AWS access will always be needed. IMDSv2 uses session-oriented access and so is more secure. A Hop limit of 1 will restrict access to a signle network hop and so workloads running in the container the cluster network will not be able to talk to the service. In combination with **node-role** this means that in-cluster workloads must use IAM Roles for Service Accounts to access AWS Resources.
+
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html
+* https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
+* https://docs.aws.amazon.com/eks/latest/userguide/best-practices-security.html#restrict-ec2-credential-access
+* CIS Benchmarks - Kubernetes - EKS - v1.0.1 - 5.2.1 Managed services - IAM - Prefer using dedicated EKS Service Accounts
 
 ## node-volumes
-Encrypted Volumes.
+Volumes attached to instances can include root volumes and other volumes as well as volumes which are controlled by things like Kubernetes Storage Classes for in-cluster Persistant Volumes. All of these should be encrypted at rest.
 
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html
 * CIS Benchmarks - AWS - Foundations - v1.0.4 - 2.2.1 Storage - EC2 - Ensure EBS volume encryption is enabled.
 
 ## node-sgs
@@ -44,10 +50,15 @@ No unrestricted inbound access to the nodes. Security Groups can restrict access
 * CIS Benchmarks - AWS - Foundations - v1.0.4 - 5.2 Networking - Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports.
 
 ## node-private
-No Public IP or DNS Name Attached. Also checking associated route tables for IGW routes was considered but deemed not necessary.
+Nodes should always reside in a private subnet. Where public access is required then services on nodes can be exposed via LoadBalancers. This check ensures that nodes have no Public IP or Public DNS Name Attached. Also checking associated route tables for IGW routes was considered but deemed not necessary.
+
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-private-addresses
 
 ## node-role
-Ensure that nodes only have minimal permissions.
+Ensure that nodes only have minimal permissions to access AWS resources. AWS defines the minimal AWS-managed policies for an EKS cluster to function and so this is used to inform this check. This does verify that the nodes only have read-access to ECR but goes further in ensuring nodes follow the core security principle of least priviledge.
+
+* https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html
+* CIS Benchmarks - Kubernetes - EKS - v1.0.1 - 5.1.3 Managed Services - Images - Minimize cluster access to read-only for Amazon ECR
 
 
 # EKS CIS Benchmark Analysis
