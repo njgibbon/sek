@@ -42,7 +42,7 @@ sek --cloud=aws --resource=eks --name=test
 ```
 
 
-# Permissions Overview
+# Permissions
 Sek will not utilise any write operations for any check with any cloud provider. Read only access permissions will be sufficient.
 
 
