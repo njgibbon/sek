@@ -1,31 +1,40 @@
 # EKS Checks
 
 ## service-logging
+Audit logs.
 
 ## service-secrets
-## service-endpoint
-## service-endpoint-firewall
-If a public EKS endpoint exists then ensure that
-## service-sgs
-## node-imds
-## node-volumes
-## node-sgs
-## node-private
-Also checking associated route tables for IGW routes was considered but deemed not necessary.
-## node-role
-Ensure that nodes only have minimal 
+Envelope encryption for Kubernetes Secrets with KMS.
 
-* Service - Logging - Audit logs. CIS EKS.
-* Service - Secrets - Envelope Encryption. CIS EKS.
-* Service - Private Endpoint enabled. Public Endpoint disabled. CIS EKS.
-* Service - Public Endpoint Firewall if exists. CIS EKS.
-* Service - Cluster SGs - No unrestricted access. ___
-* Nodes - Instance Metadata Service Options. CIS EKS.
-* Nodes - Encrypted Volumes. ___
-* Nodes - Security Groups. ___
-* Nodes - Private Subnets. _-_-
-* Nodes - No Public IP or DNS Name Attached. CIS EKS.
-* Nodes - Node Role minimal permissions. CIS EKS.
+## service-endpoint
+Private Endpoint enabled. Public Endpoint disabled.
+
+## service-endpoint-firewall
+If a public EKS endpoint exists then ensure that you enable the firewall.
+
+## service-sgs
+No unrestricted access.
+
+* CIS Benchmarks - AWS - Foundations - v1.0.4 - 5.2 Networking - Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports.
+
+## node-imds
+Instance Metadata Service Options.
+
+## node-volumes
+Encrypted Volumes.
+
+* CIS Benchmarks - AWS - Foundations - v1.0.4 - 2.2.1 Storage - EC2 - Ensure EBS volume encryption is enabled.
+
+## node-sgs
+No unrestricted access.
+
+* CIS Benchmarks - AWS - Foundations - v1.0.4 - 5.2 Networking - Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports.
+
+## node-private
+No Public IP or DNS Name Attached. Also checking associated route tables for IGW routes was considered but deemed not necessary.
+
+## node-role
+Ensure that nodes only have minimal permissions.
 
 
 # EKS CIS Benchmark Analysis
@@ -58,26 +67,3 @@ All areas identified should still be cotinuously monitored suing various tools o
 # Other Resources
 * Kube-Bench - https://github.com/aquasecurity/kube-bench
 * CIS Benchmarks - AWS - Foundations - v1.0.4 - https://learn.cisecurity.org/benchmarks
-
-
-# Scratch
-2 Storage
-2.2 Elastic Compute Cloud (EC2)
-2.2.1 Ensure EBS volume encryption is enabled
-
-5 Networking
-5.2 Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports
-
-```
-* Service - Logging - Audit logs. CIS EKS.
-* Service - Secrets - Envelope Encryption. CIS EKS.
-* Service - Private Endpoint enabled. Public Endpoint disabled. CIS EKS.
-* Service - Public Endpoint Firewall if exists. CIS EKS.
-* Service - Cluster SGs - No unrestricted access. ___
-* Nodes - Instance Metadata Service Options. CIS EKS.
-* Nodes - Encrypted Volumes. ___
-* Nodes - Security Groups. ___
-* Nodes - Private Subnets. _-_-
-* Nodes - No Public IP or DNS Name Attached. CIS EKS.
-* Nodes - Node Role minimal permissions. CIS EKS.
-```
