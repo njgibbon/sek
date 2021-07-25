@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from .resource_finder import finder
+from .finder import finder
 
 
 def main():

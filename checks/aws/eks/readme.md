@@ -10,7 +10,7 @@ Envelope encryption for Kubernetes Secrets with KMS.
 Private Endpoint enabled. Public Endpoint disabled.
 
 ## service-endpoint-firewall
-If a public EKS endpoint exists then ensure that you enable the firewall.
+If a public EKS endpoint exists then ensure that there is no unrestricted access.
 
 ## service-sgs
 No unrestricted access.
@@ -44,7 +44,7 @@ See [cis-eks.md](cis-eks.md) for an understanding of the exact coverage Sek has.
 # Areas Not In Scope
 You need to draw the line somewhere as complex services depend on and integrate with other components.
 
-All areas identified should still be cotinuously monitored suing various tools or custom checks.
+All areas identified should still be cotinuously monitored using various tools or custom checks.
 
 * General IAM best practises.
 * In-Cluster Kubernetes Security Best Practises.
