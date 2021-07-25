@@ -25,7 +25,6 @@ Organisation, structure, content, reasoning and support information for all Chec
 
 
 # Use
-
 ## Install
 ```
 pip3 install sek --upgrade
@@ -41,6 +40,10 @@ https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
 ```
 sek --cloud=aws --resource=eks --name=test
 ```
+
+
+# Permissions Overview
+Sek will not utilise any write operations for any check with any cloud provider. Read only access permissions will be sufficient.
 
 
 # Roadmap

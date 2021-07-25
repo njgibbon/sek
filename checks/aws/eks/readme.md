@@ -55,7 +55,7 @@ Nodes should always reside in a private subnet. Where public access is required 
 * https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-private-addresses
 
 ## node-role
-Ensure that nodes only have minimal permissions to access AWS resources. AWS defines the minimal AWS-managed policies for an EKS cluster to function and so this is used to inform this check. This does verify that the nodes only have read-access to ECR but goes further in ensuring nodes follow the core security principle of least priviledge.
+Ensure that nodes only have minimal permissions to access AWS resources. AWS defines the minimal AWS-managed policies for an EKS cluster to function and so this is used to inform this check. This does verify that the nodes only have read-access to ECR but goes further in ensuring nodes follow the core security principle of least privilege.
 
 * https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html
 * CIS Benchmarks - Kubernetes - EKS - v1.0.1 - 5.1.3 Managed Services - Images - Minimize cluster access to read-only for Amazon ECR
