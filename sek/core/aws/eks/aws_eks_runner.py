@@ -31,5 +31,4 @@ class AWSEKSRunner(CoreRunner):
         # Run all Checks
         super().scan()
 
-        time.sleep(1.5)
         self.time = time.time() - start_time
