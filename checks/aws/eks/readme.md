@@ -1,20 +1,32 @@
 # EKS Checks
 
 ## service-logging
-Audit logs.
+Audit logs should be enabled. Logs provide visibility into operation of the service. From a Security perspective they can be analysed automatically or otherwise to understand anomolous or unexpected use of the service.
+
+* https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
+* CIS Benchmarks - Kubernetes - EKS - v1.0.1 - 2.1.1 - Control Plane Configuration - Logging - Enable audit Logs
 
 ## service-secrets
 Envelope encryption for Kubernetes Secrets with KMS.
 
+* https://aws.amazon.com/blogs/containers/using-eks-encryption-provider-support-for-defense-in-depth/
+* CIS Benchmarks - Kubernetes - EKS - v1.0.1 - 5.3.1 Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed in AWS KMS.
+
 ## service-endpoint
-Private Endpoint enabled. Public Endpoint disabled.
+Private Endpoint enabled. Public Endpoint disabled. It is more secure to design a network architecture such that you do not need to access the Kubernetes API via the public internet.
+
+* https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html
+* CIS Benchmarks - Kubernetes - EKS - v1.0.1 - 5.4.2 Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled.
 
 ## service-endpoint-firewall
 If a public EKS endpoint exists then ensure that there is no unrestricted access.
 
-## service-sgs
-No unrestricted access.
+* https://aws.amazon.com/about-aws/whats-new/2019/12/amazon-eks-enables-network-access-restrictions-to-kubernetes-cluster-public-endpoints/
 
+## service-sgs
+No unrestricted inbound access to the control-plane. Security Groups can restrict access based on range, port and protocol. This check ensures that at least some restriction is being used. You should implement further restriction.
+
+* https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html
 * CIS Benchmarks - AWS - Foundations - v1.0.4 - 5.2 Networking - Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports.
 
 ## node-imds
@@ -26,8 +38,9 @@ Encrypted Volumes.
 * CIS Benchmarks - AWS - Foundations - v1.0.4 - 2.2.1 Storage - EC2 - Ensure EBS volume encryption is enabled.
 
 ## node-sgs
-No unrestricted access.
+No unrestricted inbound access to the nodes. Security Groups can restrict access based on range, port and protocol. This check ensures that at least some restriction is being used. You should implement further restriction.
 
+* https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html
 * CIS Benchmarks - AWS - Foundations - v1.0.4 - 5.2 Networking - Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports.
 
 ## node-private
@@ -52,7 +65,7 @@ All areas identified should still be cotinuously monitored using various tools o
 * Managed Service Actions Audit - CloudTrail.
 * Detailed K8s audit log analysis.
 * KMS Keys used for any EKS-related encryption should be rotated.
-* Network architecture and VPC Endpoints.
+* Network architecture and VPC Endpoints. https://docs.aws.amazon.com/eks/latest/userguide/private-clusters.html
 * CIS Hardening of Nodes.
 * CloudWatch Logs Encryptions with CMKs.
 
