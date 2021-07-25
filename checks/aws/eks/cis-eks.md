@@ -1,4 +1,5 @@
-# CIS
+# CIS - EKS
+Detailed coverage examination of Sek against: CIS Benchmarks - Kubernetes - EKS - v1.0.1 - https://learn.cisecurity.org/benchmarks
 
 
 # 1 - Control Plane Components
@@ -33,11 +34,21 @@ All defined Checks in this section are covered by Kube-Bench.
 
 
 # 4 - Policies
-TODO
+## 4.1 - RBAC and Service Accounts
+## 4.2 - Pod Security Policies
+## 4.3 - CNI Plugin
+## 4.4 - Secrets Management
+## 4.5 - Extensible Admission Control
+## 4.6 - General Policies
 
 
 # 5 - Managed services
-TODO
+## 5.1 Image Registry and Image Scanning
+## 5.2 Identity and Access Management (IAM)
+## 5.3 AWS Key Management Service (KMS)
+## 5.4 - Cluster Networking
+## 5.5 - Authentication and Authorization
+## 5.6 - Other Cluster Configurations
 
 
 # Resources
