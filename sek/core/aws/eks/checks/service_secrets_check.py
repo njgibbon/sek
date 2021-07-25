@@ -18,4 +18,3 @@ class ServiceSecretsCheck(AWSEKSCheck):
                     self.result = CheckResult.PASS
                     return
         self.result = CheckResult.FAIL
-
