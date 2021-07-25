@@ -1,5 +1,4 @@
 import argparse
-import os
 import sys
 
 from .resource_finder import finder
@@ -18,8 +17,13 @@ def main():
 
     print("Sek - Runtime Cloud Security Scanning\n-----")
     print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME + "\n-----")
+    print("Scan\n-----")
     
     runner = finder(CLOUD, RESOURCE, NAME)
+
+    if runner is False:
+        print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/tree/main/checks")
+        sys.exit(1)
 
     print(runner.format_results(), end = "")
     print("-----")

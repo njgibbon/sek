@@ -28,6 +28,10 @@ Ensure that nodes only have minimal
 * Nodes - Node Role minimal permissions. CIS EKS.
 
 
+# EKS CIS Benchmark Analysis
+See [cis-eks.md](cis-eks.md) for an understanding of the exact coverage Sek has.
+
+
 # Areas Not In Scope
 You need to draw the line somewhere as complex services depend on and integrate with other components.
 
