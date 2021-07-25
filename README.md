@@ -28,7 +28,7 @@ Organisation, structure, content, reasoning and support information for all Chec
 
 ## Install
 ```
-pip3 install sek
+pip3 install sek --upgrade
 ```
 
 ## Configure
