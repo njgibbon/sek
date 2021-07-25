@@ -1,3 +1,5 @@
+from .core_enums import CheckResult
+
 class CoreRunner():
     def __init__(self, name):
         self.cloud = None
@@ -39,11 +41,11 @@ class CoreRunner():
         failed = 0
         error = 0
         for check in self.checks:
-            if check.result == "PASS":
+            if check.result == CheckResult.PASS:
                 passed +=1
-            if check.result == "FAIL":
+            if check.result == CheckResult.FAIL:
                 failed +=1            
-            if check.result == "ERROR":
+            if check.result == CheckResult.ERROR:
                 error +=1
         stats_map["passed"] = passed
         stats_map["failed"] = failed

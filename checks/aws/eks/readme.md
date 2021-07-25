@@ -11,6 +11,7 @@ TODO
 * CIS Benchmarks - Kubernetes - EKS - v1.0.1 - https://learn.cisecurity.org/benchmarks
     * https://aws.amazon.com/blogs/containers/introducing-cis-amazon-eks-benchmark/
 * AWS EKS Best Practises - Security - https://aws.github.io/aws-eks-best-practices/security/docs/index.html
+* AWS EKS Security Documentation - https://docs.aws.amazon.com/eks/latest/userguide/security.html
 
 
 # Other Resources
