@@ -7,7 +7,11 @@ Concept / Dev / Test / Pre-pre-release. Just trying some things and working out 
 
 
 # Overview
-TODO
+Sek scans live configurations of Cloud Resources.
+
+The intitial focus is only on the Cloud Resource components of AWS EKS, that is the set of security checks that can reliably be automated using the Cloud provider APIs.
+
+The MVP check set is informed by industry standards primarily the Center for Internet Security Benchmarks. See the check documentation section for a comprehensive view. 
 
 
 # Checks
