@@ -28,14 +28,25 @@ pip3 install sek
 ```
 
 ## Configure
-TODO
+CLI flags are currently the only way to control the tool.
+### Authentication
+#### AWS
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
 
 ## Run
 ```
-# Example
 sek --cloud=aws --resource=eks --name=test
 ```
 
 
+# Roadmap
+[docs/roadmap.md](docs/roadmap.md)
+
 # Contributing
 [contributing.md](contributing.md)
+
+
+# Related Tools
+* Prowler - https://github.com/toniblyx/prowler
+* Kube-Bench - https://github.com/aquasecurity/kube-bench
+* Checkov - https://github.com/bridgecrewio/checkov

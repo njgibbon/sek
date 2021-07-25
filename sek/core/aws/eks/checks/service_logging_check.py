@@ -13,4 +13,3 @@ class ServiceLoggingCheck(AWSEKSCheck):
                 self.result = CheckResult.FAIL
                 return
         self.result = CheckResult.PASS
-
