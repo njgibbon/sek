@@ -130,4 +130,3 @@ Checkov for Kubernetes can be ran before deployment as well as in a live cluster
 * Kube Bench for EKS
     * https://github.com/aquasecurity/kube-bench/tree/main/cfg/eks-1.0
     * https://github.com/aquasecurity/kube-bench/blob/main/job-eks.yaml
-* Checkov for Kubernetes

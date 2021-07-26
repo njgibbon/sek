@@ -8,6 +8,7 @@ class CoreRunner():
         self.name = name
         self.context = None
         self.checks = []
+        self.time = None
 
     def scan(self):
         for check in self.checks:

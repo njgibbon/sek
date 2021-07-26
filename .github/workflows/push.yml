@@ -44,7 +44,7 @@ jobs:
 
     - name: Pylint
       run: |
-        pylint .
+        pylint sek scripts tests
 
   bandit:
     name: Bandit
