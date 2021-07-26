@@ -1,5 +1,6 @@
 from .core_enums import CheckResult
 
+
 class CoreRunner():
     def __init__(self, name):
         self.cloud = None
@@ -30,7 +31,7 @@ class CoreRunner():
         for result in results:
             result_string += result["name"] + ": " + result["result"] + "\n"
             if result["message"] is not None:
-                result_string += result["message"] + "\n\n" 
+                result_string += result["message"] + "\n\n"
         return result_string
 
     def stats(self):

@@ -1,6 +1,8 @@
 import argparse
 import sys
 
+from .core.aws.eks.aws_eks_runner import AWSEKSRunner
+
 
 def main():
     arg_parser = argparse.ArgumentParser()
@@ -16,14 +18,14 @@ def main():
     print("Sek - Runtime Cloud Security Scanning\n-----")
     print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME + "\n-----")
     print("Scan\n-----")
-    
+
     runner = run(CLOUD, RESOURCE, NAME)
 
     if runner is False:
         print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/tree/main/checks")
         sys.exit(1)
 
-    print(runner.format_results(), end = "")
+    print(runner.format_results(), end="")
     print("-----")
     print("Check Document: " + runner.link)
     print("-----")
@@ -37,7 +39,7 @@ def main():
 
 
 def run(cloud, resource, name):
-    if ( cloud == "aws" or cloud == "AWS" ) and ( resource == "eks" or resource == "EKS" ):
+    if (cloud == "aws" or cloud == "AWS") and (resource == "eks" or resource == "EKS"):
         runner = AWSEKSRunner(name)
         return runner
     else:

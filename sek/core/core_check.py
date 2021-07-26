@@ -1,6 +1,7 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 
 from .core_enums import CheckResult
+
 
 class CoreCheck(): 
     def __init__(self, resource_name, context):
