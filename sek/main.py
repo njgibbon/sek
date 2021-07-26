@@ -1,8 +1,6 @@
 import argparse
 import sys
 
-from .finder import finder
-
 
 def main():
     arg_parser = argparse.ArgumentParser()
@@ -19,7 +17,7 @@ def main():
     print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME + "\n-----")
     print("Scan\n-----")
     
-    runner = finder(CLOUD, RESOURCE, NAME)
+    runner = run(CLOUD, RESOURCE, NAME)
 
     if runner is False:
         print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/tree/main/checks")
@@ -36,6 +34,14 @@ def main():
     stats = runner.stats()
     if stats["checks"] != stats["passed"]:
         sys.exit(1)
+
+
+def run(cloud, resource, name):
+    if ( cloud == "aws" or cloud == "AWS" ) and ( resource == "eks" or resource == "EKS" ):
+        runner = AWSEKSRunner(name)
+        return runner
+    else:
+        return False
 
 
 if __name__ == '__main__':
