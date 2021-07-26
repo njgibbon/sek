@@ -44,11 +44,11 @@ class CoreRunner():
         error = 0
         for check in self.checks:
             if check.result == CheckResult.PASS:
-                passed +=1
+                passed += 1
             if check.result == CheckResult.FAIL:
-                failed +=1            
+                failed += 1
             if check.result == CheckResult.ERROR:
-                error +=1
+                error += 1
         stats_map["passed"] = passed
         stats_map["failed"] = failed
         stats_map["error"] = error

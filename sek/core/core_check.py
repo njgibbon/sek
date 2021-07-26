@@ -3,7 +3,7 @@ from abc import abstractmethod
 from .core_enums import CheckResult
 
 
-class CoreCheck(): 
+class CoreCheck():
     def __init__(self, resource_name, context):
         self.cloud = None
         self.resource = None

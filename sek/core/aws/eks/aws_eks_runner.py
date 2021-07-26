@@ -11,7 +11,7 @@ from .checks.service_endpoint_check import ServiceEndpointCheck
 
 class AWSEKSRunner(CoreRunner):
     def __init__(self, name):
-        start_time = time.time() 
+        start_time = time.time()
 
         super().__init__(name)
 

@@ -1,6 +1,7 @@
 from ..aws_eks_check import AWSEKSCheck
 from ....core_enums import CheckResult
 
+
 class ServiceEndpointCheck(AWSEKSCheck):
     def __init__(self, resource_name, context):
         super().__init__(resource_name, context)
