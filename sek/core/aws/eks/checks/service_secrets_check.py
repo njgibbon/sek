@@ -7,7 +7,8 @@ class ServiceSecretsCheck(AWSEKSCheck):
         self.name = "service-secrets"
 
     def scan_logic(self):
-        encryption_config = self.context.cluster_description["cluster"].get("encryptionConfig")
+        cluster = self.context.cluster_description.get("cluster")
+        encryption_config = cluster.get("encryptionConfig")
         if encryption_config is None:
             self.result = CheckResult.FAIL
             return

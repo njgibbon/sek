@@ -38,7 +38,7 @@ https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
 
 ## Run
 ```
-sek --cloud=aws --resource=eks --name=test
+sek --cloud=aws --resource=eks --name=name
 ```
 
 
