@@ -6,6 +6,7 @@ from .aws_eks_context import AWSEKSContext
 # Import AWS EKS Checks
 from .checks.service_logging_check import ServiceLoggingCheck
 from .checks.service_secrets_check import ServiceSecretsCheck
+from .checks.service_endpoint_check import ServiceEndpointCheck
 
 
 class AWSEKSRunner(CoreRunner):
@@ -25,8 +26,10 @@ class AWSEKSRunner(CoreRunner):
         # Load AWS EKS Checks into the Runner
         service_logging_check = ServiceLoggingCheck(name, self.context)
         service_secrets_check = ServiceSecretsCheck(name, self.context)
+        service_endpoint_check = ServiceEndpointCheck(name, self.context)
         self.checks.append(service_logging_check)
         self.checks.append(service_secrets_check)
+        self.checks.append(service_endpoint_check)
 
         # Run all Checks
         super().scan()
