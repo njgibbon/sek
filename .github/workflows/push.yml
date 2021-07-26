@@ -22,7 +22,7 @@ jobs:
 
     - name: Flake8
       run: |
-        flake8 scripts
+        flake8 sek
 
   pylint:
     name: Pylint 
@@ -44,7 +44,7 @@ jobs:
 
     - name: Pylint
       run: |
-        pylint scripts
+        pylint sek
 
   bandit:
     name: Bandit
@@ -65,7 +65,7 @@ jobs:
 
     - name: Bandit
       run: |
-        bandit -r scripts
+        bandit -r sek
 
   fend:
     name: Fend
