@@ -1,17 +1,17 @@
 ![sek](images/sek.png)
 
-Runtime Cloud Security Scanning.
+Live Cloud Resource Security Configuration Scanning.
 
 # Status
-Concept / Dev / Test / Pre-pre-release. Just trying some things and working out how stuff might fit together.
+Concept / Dev / Test / Pre-pre-release. Just trying things and working out how stuff might fit together.
 
 
 # Overview
-Sek scans live configurations of Cloud Resources.
+Sek scans live Cloud Resources and looks for Security-related misconfiguration.
 
-The intitial focus is only on the Cloud Resource components of AWS EKS, that is the set of security checks that can reliably be automated using the Cloud provider APIs.
+Intitially, the focus is on the Cloud Resource components of AWS EKS.
 
-The MVP check set is informed by industry standards primarily the Center for Internet Security Benchmarks. See the check documentation section for a comprehensive view. 
+Cloud Resource Check Sets are informed by industry standards primarily the Center for Internet Security Benchmarks. See the Check documentation section for a comprehensive view. 
 
 
 # Checks
