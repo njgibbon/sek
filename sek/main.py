@@ -43,7 +43,7 @@ def main():
 
 
 def run(cloud, resource, name):
-    if (cloud == "aws" or cloud == "AWS") and (resource == "eks" or resource == "EKS"):
+    if cloud == "aws" and resource == "eks":
         runner = AWSEKSRunner(name)
         return runner
     else:

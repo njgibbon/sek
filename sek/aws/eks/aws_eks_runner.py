@@ -2,11 +2,7 @@ import time
 
 from ...core.runner import CoreRunner
 from .aws_eks_context import AWSEKSContext
-
-# Import AWS EKS Checks
-from .checks.service_logging_check import ServiceLoggingCheck
-from .checks.service_secrets_check import ServiceSecretsCheck
-from .checks.service_endpoint_check import ServiceEndpointCheck
+from .checks import *
 
 
 class AWSEKSRunner(CoreRunner):
