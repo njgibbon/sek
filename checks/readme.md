@@ -5,16 +5,15 @@ Organisation, structure, content, reasoning and support information for all Chec
 # Clouds
 One folder per supported Cloud.
 
-Example: `aws/`.
+Example: [aws](aws).
 
 
 # Resources
 One folder per supported Resource under that Cloud which corresponds to a set of Checks.
 
-Example: `aws/eks/`.
+Example: [aws/eks](aws/eks).
 
 
 # Index
-```
-aws - eks
-```
+* [aws](aws)
+* * [aws/eks](aws/eks)
