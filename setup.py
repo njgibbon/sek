@@ -3,6 +3,9 @@ from setuptools import find_packages
 
 setup(
     name='sek',
+    description='Live Cloud Resource Security Configuration Scanning.',
+    long_description='Live Cloud Resource Security Configuration Scanning.',
+    url='https://github.com/njgibbon/sek',
     version='0.0.14',
     author="Nick Gibbon",
     packages=find_packages(),
