@@ -34,3 +34,7 @@ Pass: 2 - (100.0%)
 Fail: 0 - (0.0%)
 Error: 0 - (0.0%)
 ```
+
+# Structure
+* Main - Entrypoint - Obtain user input and configuration. Create minimal required objects. Cloud Provider Object.
+* ...
