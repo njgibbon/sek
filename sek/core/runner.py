@@ -3,8 +3,6 @@ from .enums import CheckResult
 
 class CoreRunner():
     def __init__(self, name):
-        self.cloud = None
-        self.resource = None
         self.link = None
         self.name = name
         self.context = None

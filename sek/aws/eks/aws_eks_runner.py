@@ -16,8 +16,6 @@ class AWSEKSRunner(CoreRunner):
         super().__init__(name)
 
         # Set AWS EKS related data
-        self.cloud = "aws"
-        self.resource = "eks"
         self.link = "https://github.com/njgibbon/sek/blob/main/checks/aws/eks/readme.md"
 
         # Create AWS EKS Context

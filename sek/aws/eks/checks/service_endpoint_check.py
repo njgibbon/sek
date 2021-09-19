@@ -1,10 +1,12 @@
-from ..aws_eks_check import AWSEKSCheck
+from ....core.check import CoreCheck
 from ....core.enums import CheckResult
 
 
-class ServiceEndpointCheck(AWSEKSCheck):
+class ServiceEndpointCheck(CoreCheck):
     def __init__(self, resource_name, context):
         super().__init__(resource_name, context)
+        self.cloud = "aws"
+        self.resource = "eks"
         self.name = "service-endpoint"
 
     def scan_logic(self):
