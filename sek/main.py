@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from .core.aws.eks.aws_eks_runner import AWSEKSRunner
+from .aws.eks.aws_eks_runner import AWSEKSRunner
 
 
 def main():

@@ -1,6 +1,6 @@
 import time
 
-from ...core_runner import CoreRunner
+from ...core.core_runner import CoreRunner
 from .aws_eks_context import AWSEKSContext
 
 # Import AWS EKS Checks
@@ -18,7 +18,7 @@ class AWSEKSRunner(CoreRunner):
         # Set AWS EKS related data
         self.cloud = "aws"
         self.resource = "eks"
-        self.link = "https://github.com/njgibbon/sek/blob/main/checks/aws/eks"
+        self.link = "https://github.com/njgibbon/sek/blob/main/checks/aws/eks/readme.md"
 
         # Create AWS EKS Context
         self.context = AWSEKSContext(name)

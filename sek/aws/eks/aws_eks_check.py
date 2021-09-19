@@ -1,4 +1,4 @@
-from ...core_check import CoreCheck
+from ...core.core_check import CoreCheck
 
 
 class AWSEKSCheck(CoreCheck):

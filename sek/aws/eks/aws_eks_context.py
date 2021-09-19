@@ -1,6 +1,6 @@
 import boto3
 
-from ...core_context import CoreContext
+from ...core.core_context import CoreContext
 
 
 class AWSEKSContext(CoreContext):

@@ -1,5 +1,5 @@
 from ..aws_eks_check import AWSEKSCheck
-from ....core_enums import CheckResult
+from ....core.core_enums import CheckResult
 
 
 class ServiceEndpointCheck(AWSEKSCheck):
@@ -9,7 +9,7 @@ class ServiceEndpointCheck(AWSEKSCheck):
 
     def scan_logic(self):
         endpoint_public_access = self.context.cluster_description["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"]
-        if (endpoint_public_access):
+        if (endpoint_public_access is False):
             self.result = CheckResult.PASS
             return
         else:
