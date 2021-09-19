@@ -5,10 +5,14 @@ from .core.aws.eks.aws_eks_runner import AWSEKSRunner
 
 
 def main():
+    cloud_choices = ['aws']
+    resource_choices = ['eks']
+
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('--cloud', action='store', type=str, required=True)
-    arg_parser.add_argument('--resource', action='store', type=str, required=True)
-    arg_parser.add_argument('--name', action='store', type=str, required=True)
+    arg_parser.add_argument('--version', '-version', '--v', '-v', action='version', version='0.0.14')
+    arg_parser.add_argument('--cloud', action='store', type=str, required=True, choices=cloud_choices, help='Target Cloud Provider.')
+    arg_parser.add_argument('--resource', action='store', type=str, required=True, choices=resource_choices, help='Target Cloud Resource.')
+    arg_parser.add_argument('--name', action='store', type=str, required=True, help='Target Cloud Resource Name.')
     args = arg_parser.parse_args()
 
     CLOUD = args.cloud
