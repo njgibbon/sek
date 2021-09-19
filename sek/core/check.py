@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from .core_enums import CheckResult
+from .enums import CheckResult
 
 
 class CoreCheck():

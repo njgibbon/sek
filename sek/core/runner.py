@@ -1,4 +1,4 @@
-from .core_enums import CheckResult
+from .enums import CheckResult
 
 
 class CoreRunner():

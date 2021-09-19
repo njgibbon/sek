@@ -1,5 +1,5 @@
 from ..aws_eks_check import AWSEKSCheck
-from ....core.core_enums import CheckResult
+from ....core.enums import CheckResult
 
 
 class ServiceSecretsCheck(AWSEKSCheck):

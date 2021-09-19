@@ -1,6 +1,6 @@
 import time
 
-from ...core.core_runner import CoreRunner
+from ...core.runner import CoreRunner
 from .aws_eks_context import AWSEKSContext
 
 # Import AWS EKS Checks
