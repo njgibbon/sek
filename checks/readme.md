@@ -16,4 +16,4 @@ Example: [aws/eks](aws/eks).
 
 # Index
 * [aws](aws)
-* * [aws/eks](aws/eks)
+    * [aws/eks](aws/eks)

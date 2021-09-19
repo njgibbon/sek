@@ -77,7 +77,7 @@ All areas identified should still be cotinuously monitored using various tools o
 * Detailed K8s audit log analysis.
 * KMS Keys used for any EKS-related encryption should be rotated.
 * Network architecture and VPC Endpoints. https://docs.aws.amazon.com/eks/latest/userguide/private-clusters.html
-* CIS Hardening of Nodes.
+* CIS Hardening of Nodes / AMI Considerations.
 * CloudWatch Logs Encryptions with CMKs.
 
 
