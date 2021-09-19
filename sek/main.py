@@ -26,7 +26,7 @@ def main():
     runner = run(CLOUD, RESOURCE, NAME)
 
     if runner is False:
-        print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/tree/main/checks")
+        print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/blob/main/checks/readme.md")
         sys.exit(1)
 
     print(runner.format_results(), end="")
