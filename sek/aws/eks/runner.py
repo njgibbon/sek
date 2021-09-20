@@ -11,7 +11,7 @@ class AWSEKSRunner(CoreRunner):
         super().__init__(name)
         self.link = "https://github.com/njgibbon/sek/blob/main/checks/aws/eks/readme.md"
         self.context = AWSEKSContext(name)
-        for check_class in CoreCheck.__subclasses__():  # noqa
+        for check_class in CoreCheck.__subclasses__():  # noqa - pylint: disable=undefined-variable
             self.checks.append(check_class(name, self.context))
         super().scan()
         self.time = time.time() - start_time
