@@ -40,6 +40,9 @@ CLI flags are currently the only way to control the tool.
 #### AWS
 https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
 
+### Skipping Checks
+TODO
+
 ## Run
 ```
 sek --cloud=aws --resource=eks --name=name
