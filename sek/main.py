@@ -46,8 +46,7 @@ def run(cloud, resource, name):
     if cloud == "aws" and resource == "eks":
         runner = AWSEKSRunner(name)
         return runner
-    else:
-        return False
+    return False
 
 
 if __name__ == '__main__':
