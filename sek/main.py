@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from .aws.eks.aws_eks_runner import AWSEKSRunner
+from .aws.eks.runner import AWSEKSRunner
 
 
 def main():
@@ -19,7 +19,7 @@ def main():
     RESOURCE = args.resource
     NAME = args.name
 
-    print("Sek - Runtime Cloud Security Scanning\n-----")
+    print("Sek - Live Cloud Resource Security Configuration Scanning\n-----")
     print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME + "\n-----")
     print("Scan\n-----")
 
