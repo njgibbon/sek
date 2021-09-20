@@ -5,3 +5,7 @@
 * Not using 'Black' formatting. I don't like how some of it looks, it's not GA stable and I worry about all of the edge cases which are raised against the tool. I don't feel super strongly about this decision but that's it for now. I will be using other tools which influence formatting.
 
 * Design will focus on sanley minimising network requests. So, individual check independence will not be the highest ideal. For example, for all EKS checks there will only need to be a single `describe_cluster` request and this data will be passed to all checks that require the information. The check will not make the request again.
+
+* Using dependency injection to make checks easier to test. Considering dependency injection to *Runners*.
+
+* Not trying to hack together a way to dynamically load checks based on an input path to the class. Using intermediate *Runners* to configure checks for a cloud resource.
