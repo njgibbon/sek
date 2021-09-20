@@ -12,3 +12,9 @@ twine upload dist/*
 ```
 python3 -m sek.main --cloud=aws --resource=eks --name=test
 ```
+
+
+# Test
+```
+python3 -m unittest discover tests 
+```
