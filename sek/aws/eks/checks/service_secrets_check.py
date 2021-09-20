@@ -22,3 +22,4 @@ class ServiceSecretsCheck(CoreCheck):
                     self.result = CheckResult.PASS
                     return
         self.result = CheckResult.FAIL
+        return

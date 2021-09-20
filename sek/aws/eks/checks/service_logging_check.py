@@ -16,3 +16,4 @@ class ServiceLoggingCheck(CoreCheck):
                 self.result = CheckResult.FAIL
                 return
         self.result = CheckResult.PASS
+        return

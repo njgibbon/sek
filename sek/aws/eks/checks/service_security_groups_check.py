@@ -14,5 +14,6 @@ class ServiceSecurityGroupsCheck(CoreCheck):
         sg_ingress_status = unrestricted_security_groups_ingress(self.context.service_security_groups)
         if sg_ingress_status is False:
             self.result = CheckResult.PASS
-        else:
-            self.result = CheckResult.FAIL
+            return
+        self.result = CheckResult.FAIL
+        return

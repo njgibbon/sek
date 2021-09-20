@@ -16,5 +16,6 @@ class ServiceEndpointFirewallCheck(CoreCheck):
             for ipv4_range in public_access_cidrs:
                 if ipv4_range == "0.0.0.0/0":
                     self.result = CheckResult.FAIL
-        else:
-            self.result = CheckResult.PASS
+                    return
+        self.result = CheckResult.PASS
+        return
