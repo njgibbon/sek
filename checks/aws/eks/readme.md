@@ -73,6 +73,7 @@ All areas identified should still be cotinuously monitored using various tools o
 * General IAM best practises.
 * In-Cluster Kubernetes Security Best Practises.
 * Network Audit - VPC Flow Logs.
+* RBAC Implementations.
 * Managed Service Actions Audit - CloudTrail.
 * Detailed K8s audit log analysis.
 * KMS Keys used for any EKS-related encryption should be rotated.
