@@ -1,7 +1,7 @@
 from ....core.check import CoreCheck
 from ....core.enums import CheckResult
-
 from ....aws.utils import unrestricted_security_groups_ingress
+
 
 class ServiceSecurityGroupsCheck(CoreCheck):
     def __init__(self, resource_name, context):
