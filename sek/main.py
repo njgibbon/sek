@@ -15,15 +15,15 @@ def main():
     arg_parser.add_argument('--name', action='store', type=str, required=True, help='Target Cloud Resource Name.')
     args = arg_parser.parse_args()
 
-    CLOUD = args.cloud
-    RESOURCE = args.resource
-    NAME = args.name
+    cloud = args.cloud
+    resource = args.resource
+    name = args.name
 
     print("Sek - Live Cloud Resource Security Configuration Scanning\n-----")
-    print("Cloud: " + CLOUD + " - Resource: " + RESOURCE + " - Name: " + NAME + "\n-----")
+    print("Cloud: " + cloud + " - Resource: " + resource + " - Name: " + name + "\n-----")
     print("Scan\n-----")
 
-    runner = run(CLOUD, RESOURCE, NAME)
+    runner = run(cloud, resource, name)
 
     if runner is False:
         print("No Cloud / Resource match. See: https://github.com/njgibbon/sek/blob/main/checks/readme.md")
