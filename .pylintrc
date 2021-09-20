@@ -1,5 +1,5 @@
 [MESSAGES CONTROL]
-disable=line-too-long
+disable=line-too-long, missing-module-docstring, missing-function-docstring
 
 [FORMAT]
 good-names=sg,ip,r,rt,n
