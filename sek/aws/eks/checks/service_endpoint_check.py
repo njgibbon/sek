@@ -13,7 +13,5 @@ class ServiceEndpointCheck(CoreCheck):
         endpoint_public_access = self.context.cluster_description["cluster"]["resourcesVpcConfig"]["endpointPublicAccess"]
         if endpoint_public_access is False:
             self.result = CheckResult.PASS
-            return
         else:
             self.result = CheckResult.FAIL
-            return

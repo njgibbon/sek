@@ -18,4 +18,3 @@ class ServiceEndpointFirewallCheck(CoreCheck):
                     self.result = CheckResult.FAIL
         else:
             self.result = CheckResult.PASS
-            return
