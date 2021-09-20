@@ -10,7 +10,7 @@ setup(
     python_requires=">=3.7",
     install_requires=[
         "boto3"
-    ]
+    ],
     author="Nick Gibbon",
     packages=find_packages(),
     entry_points={

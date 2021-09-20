@@ -9,9 +9,7 @@ Concept / Dev / Test / Pre-pre-release. Trying things and working out how stuff 
 # Overview
 Sek scans live Cloud Resources and looks for Security-related misconfiguration.
 
-Sek is intended for immediate fast security feedback when working with a Cloud Service. Simplifying complex Spot Checks and providing Continuous Compliance / Testing via Automated Pipelines.
-
-Comprehensive Audit Capabilities and Integrations will come next. See [roadmap.md](roadmap.md).
+Sek is intended for immediate fast security feedback when working with a Cloud Resource. Simplifying complex Spot Checks and providing Continuous Compliance / Testing via Automated Pipelines.
 
 Intitially the focus is only on the Cloud Resource components of AWS EKS.
 
