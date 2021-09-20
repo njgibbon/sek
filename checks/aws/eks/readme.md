@@ -9,7 +9,7 @@ Audit logs should be enabled. Logs provide visibility into operation of the serv
 ## service-secrets
 Envelope encryption for Kubernetes Secrets with KMS.
 
-* https://aws.amazon.com/blogs/containers/using-eks-encryption-provider-support-for-defense-in-depth/
+* https://aws.amazon.com/blogs/containers/using-eks-encryption-provider-support-for-defense-in-depth
 * CIS Benchmarks - Kubernetes - EKS - v1.0.1 - 5.3.1 Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed in AWS KMS.
 
 ## service-endpoint
@@ -23,7 +23,7 @@ If a public EKS endpoint exists then ensure that there is no unrestricted access
 
 * https://aws.amazon.com/about-aws/whats-new/2019/12/amazon-eks-enables-network-access-restrictions-to-kubernetes-cluster-public-endpoints/
 
-## service-sgs
+## service-security-groups
 No unrestricted inbound access to the control-plane. Security Groups can restrict access based on range, port and protocol. This check ensures that at least some restriction is being used. You should implement further restriction.
 
 * https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html
