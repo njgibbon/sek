@@ -25,6 +25,7 @@ https://github.com/njgibbon/sek/issues
 
 ### Support more resources, more clouds
 * Implementing an MVP with only AWS - EKS in mind. I would like to add more AWS services and even more clouds. So, after getting the core logic down the internal structure will focus on enabling reuse of the same patterns, interfaces and testing to make this sort of extentsion natural and relatively easy.
+* It may make the most sense to pivot to support Azure - AKS and GCP - GKE aswell as AWS - EKS to make Sek a more general Managed Kubernetes Security Scanner!
 
 ### Audit mode
-* Initial focus on a scan against one single service given a name. In the future this can be extended to audit for all services in an account or region.
+* Initial focus on a scan against one single service given a name. In the future this can be extended to audit for all resources of the resource type in an account or region.
