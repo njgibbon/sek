@@ -1,4 +1,4 @@
-# Ops
+# Oerations
 
 
 # Build
@@ -20,4 +20,16 @@ python3 -m sek.main --cloud=aws --resource=eks --name=test
 # Test
 ```
 python3 -m unittest discover tests 
+```
+
+
+# Docker
+```
+docker build -t sek .
+docker run -it --rm sek
+docker tag sek nickjgibbon/sek
+docker tag sek nickjgibbon/sek:0.0.14
+docker image push nickjgibbon/sek
+docker image push nickjgibbon/sek:0.0.14
+docker run -it --rm nickjgibbon/sek
 ```
