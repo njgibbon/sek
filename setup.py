@@ -6,7 +6,7 @@ setup(
     description="Live Cloud Resource Security Configuration Scanning.",
     long_description="Live Cloud Resource Security Configuration Scanning.",
     url="https://github.com/njgibbon/sek",
-    version="0.0.14",
+    version="0.0.16",
     python_requires=">=3.7",
     install_requires=[
         "boto3"

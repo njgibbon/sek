@@ -26,7 +26,7 @@ Organisation, structure, content, reasoning and support information for all Chec
 [checks/aws/eks/readme.md](checks/aws/eks/readme.md)
 
 
-# Use
+# Usage
 ## Install
 ```
 pip3 install sek --upgrade

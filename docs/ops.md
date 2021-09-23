@@ -1,5 +1,10 @@
 # Operations
 
+# Versioning
+* `setup.py`
+* `main.py`
+* `Dockerfile`
+
 
 # Build
 ```
@@ -28,8 +33,8 @@ python3 -m unittest discover tests
 docker build -t sek .
 docker run -it --rm sek
 docker tag sek nickjgibbon/sek
-docker tag sek nickjgibbon/sek:0.0.14
+docker tag sek nickjgibbon/sek:0.0.15
 docker image push nickjgibbon/sek
-docker image push nickjgibbon/sek:0.0.14
+docker image push nickjgibbon/sek:0.0.15
 docker run -it --rm nickjgibbon/sek
 ```

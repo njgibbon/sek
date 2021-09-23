@@ -9,7 +9,7 @@ def main():
     resource_choices = ['eks']
 
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('--version', '-version', '--v', '-v', action='version', version='0.0.14')
+    arg_parser.add_argument('--version', '-version', '--v', '-v', action='version', version='0.0.16')
     arg_parser.add_argument('--cloud', action='store', type=str, required=True, choices=cloud_choices, help='Target Cloud Provider.')
     arg_parser.add_argument('--resource', action='store', type=str, required=True, choices=resource_choices, help='Target Cloud Resource.')
     arg_parser.add_argument('--name', action='store', type=str, required=True, help='Target Cloud Resource Name.')
