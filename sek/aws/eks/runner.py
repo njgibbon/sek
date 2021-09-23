@@ -2,7 +2,7 @@ import time
 
 from ...core.runner import CoreRunner
 from .context import AWSEKSContext
-from .checks import *  # noqa - pylint: disable
+from .checks import *  # noqa - pylint: disable=unused-wildcard-import
 
 
 class AWSEKSRunner(CoreRunner):
