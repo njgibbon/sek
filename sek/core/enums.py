@@ -5,3 +5,4 @@ class CheckResult(str, Enum):
     PASS = "PASS"  # nosec
     FAIL = "FAIL"
     ERROR = "ERROR"
+    SKIP = "SKIP"

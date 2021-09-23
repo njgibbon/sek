@@ -4,7 +4,7 @@ from .enums import CheckResult
 
 
 class CoreCheck():
-    def __init__(self, resource_name, context):
+    def __init__(self, resource_name, context, skip):
         self.cloud = None
         self.resource = None
         self.resource_name = resource_name
@@ -12,8 +12,12 @@ class CoreCheck():
         self.result = None
         self.message = None
         self.context = context
+        self.skip = skip
 
     def scan(self):
+        if self.name in self.skip:
+            self.result = CheckResult.SKIP
+            return
         try:
             self.scan_logic()
         except Exception as err:

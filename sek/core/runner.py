@@ -2,9 +2,10 @@ from .enums import CheckResult
 
 
 class CoreRunner():
-    def __init__(self, name):
+    def __init__(self, name, skip):
         self.link = None
         self.name = name
+        self.skip = skip
         self.context = None
         self.checks = []
         self.time = None
@@ -39,22 +40,28 @@ class CoreRunner():
         stats_map["time"] = self.time
         passed = 0
         failed = 0
+        skipped = 0
         error = 0
         for check in self.checks:
             if check.result == CheckResult.PASS:
                 passed += 1
             if check.result == CheckResult.FAIL:
                 failed += 1
+            if check.result == CheckResult.SKIP:
+                skipped += 1
             if check.result == CheckResult.ERROR:
                 error += 1
         stats_map["passed"] = passed
         stats_map["failed"] = failed
+        stats_map["skipped"] = skipped
         stats_map["error"] = error
         passed_percent = (passed / check_total) * 100
         failed_percent = (failed / check_total) * 100
+        skipped_percent = (skipped / check_total) * 100
         error_percent = (error / check_total) * 100
         stats_map["passed_percent"] = passed_percent
         stats_map["failed_percent"] = failed_percent
+        stats_map["skipped_percent"] = skipped_percent
         stats_map["error_percent"] = error_percent
         return stats_map
 
@@ -64,6 +71,7 @@ class CoreRunner():
         check_string = "Checks: " + str(stats["checks"]) + "\n"
         pass_string = "Pass: " + str(stats["passed"]) + " - (" + str(stats["passed_percent"]) + "%)\n"
         fail_string = "Fail: " + str(stats["failed"]) + " - (" + str(stats["failed_percent"]) + "%)\n"
+        skip_string = "Skip: " + str(stats["skipped"]) + " - (" + str(stats["skipped_percent"]) + "%)\n"
         err_string = "Error: " + str(stats["error"]) + " - (" + str(stats["error_percent"]) + "%)\n"
-        stats_string = time_string + check_string + pass_string + fail_string + err_string
+        stats_string = time_string + check_string + pass_string + fail_string + skip_string + err_string
         return stats_string
