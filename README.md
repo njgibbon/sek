@@ -39,7 +39,14 @@ CLI flags are currently the only way to control the tool.
 https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
 
 ### Skipping Checks
-TODO
+Find the Check Name(s) / ID(s) in the related Sek Check Document.
+
+Pass the list you would like to Skip as an optional flag like so:
+```
+--skip a b c
+# E.g for AWS - EKS
+--skip service-endpoint service-endpoint-firewall
+```
 
 ## Run
 ```

@@ -18,6 +18,7 @@ See [../checks/aws/eks/readme.md](../checks/aws/eks/readme.md).
 Sek - Live Cloud Resource Security Configuration Scanning
 -----
 Cloud: aws - Resource: eks - Name: integration
+Skip: ['a', 'b', 'c']
 -----
 Scan
 -----
@@ -35,6 +36,7 @@ Time: 0.9767611026763916s
 Checks: 5
 Pass: 5 - (100.0%)
 Fail: 0 - (0.0%)
+Skip: 0 - (0.0%)
 Error: 0 - (0.0%)
 
 ```
