@@ -3,8 +3,8 @@ from ....core.enums import CheckResult
 
 
 class ServiceEndpointFirewallCheck(CoreCheck):
-    def __init__(self, resource_name, context):
-        super().__init__(resource_name, context)
+    def __init__(self, resource_name, context, skip):
+        super().__init__(resource_name, context, skip)
         self.cloud = "aws"
         self.resource = "eks"
         self.name = "service-endpoint-firewall"

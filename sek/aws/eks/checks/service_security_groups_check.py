@@ -4,8 +4,8 @@ from ....aws.utils import unrestricted_security_groups_ingress
 
 
 class ServiceSecurityGroupsCheck(CoreCheck):
-    def __init__(self, resource_name, context):
-        super().__init__(resource_name, context)
+    def __init__(self, resource_name, context, skip):
+        super().__init__(resource_name, context, skip)
         self.cloud = "aws"
         self.resource = "eks"
         self.name = "service-security-groups"
