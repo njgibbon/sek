@@ -32,6 +32,7 @@ deactivate
 pip install pip --upgrade
 pip install <dependencies> --upgrade
 pip freeze > requirements.txt
+pip install -r requirements.txt
 ```
 
 # Test
