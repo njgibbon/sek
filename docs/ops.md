@@ -23,6 +23,17 @@ python3 -m sek.main --cloud=aws --resource=eks --name=test
 ```
 
 
+# Venv
+```
+pip3 install venv --upgrade
+python3 -m venv venv
+source venv/bin/activate
+deactivate
+pip install pip --upgrade
+pip install <dependencies> --upgrade
+pip freeze > requirements.txt
+```
+
 # Test
 ```
 python3 -m unittest discover tests 

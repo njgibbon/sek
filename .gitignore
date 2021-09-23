@@ -2,3 +2,4 @@
 dist/
 sek.egg-info/
 build/
+venv/
