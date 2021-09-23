@@ -1,7 +1,0 @@
-aws:
-  eks:
-    cluster_name: test
-    skip:
-      - private-endpoint
-      - security-groups
-
