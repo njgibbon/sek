@@ -1,4 +1,4 @@
-# Oerations
+# Operations
 
 
 # Build
