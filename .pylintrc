@@ -1,5 +1,5 @@
 [MESSAGES CONTROL]
-disable=line-too-long, missing-module-docstring, missing-function-docstring, missing-class-docstring, import-error, wildcard-import, too-few-public-methods, attribute-defined-outside-init, broad-except
+disable=line-too-long, missing-module-docstring, missing-function-docstring, missing-class-docstring, import-error, wildcard-import, too-few-public-methods, attribute-defined-outside-init, broad-except, too-many-instance-attributes
 
 [FORMAT]
 good-names=sg,ip,r,rt,n
